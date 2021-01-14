@@ -4,13 +4,16 @@ var log4js = require("log4js");
 
 var moment = require("moment");
 
-var filename = "Log_" + moment().format("DDMMMYYYY"); // Logger configuration
+var dotenv = require('dotenv');
+
+var filename = "Log_" + moment().format("DDMMMYYYY");
+dotenv.config(); // Logger configuration
 
 log4js.configure({
   appenders: {
     fileAppender: {
       type: "file",
-      filename: "./Logs/".concat(filename, ".txt")
+      filename: "".concat(process.env.base_url, "Logs/").concat(filename, ".txt")
     }
   },
   categories: {

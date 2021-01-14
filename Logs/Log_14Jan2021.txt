@@ -1,40 +1,4 @@
-[2021-01-14T18:28:33.834] [INFO] default - API CALL STARTED (API NAME: GetAuthenticationResponseDataRequest, User Id: 'demoassessorelec@gmail.com')
+[14-Jan-2021 06:46:43 PM] [INFO] default - API CALL STARTED (API NAME: GetAuthenticationResponseDataRequest, User Id: 'demoassessorelec@gmail.com')
 
-[2021-01-14T18:28:33.835] [INFO] default - Missing/Invalid Password (API NAME: GetAuthenticationResponseDataRequest, User Id: 'demoassessorelec@gmail.com')
-
-[2021-01-14T18:28:33.835] [INFO] default - API CALL ENDED (API NAME: GetAuthenticationResponseDataRequest, User Id: 'demoassessorelec@gmail.com')
-
-[14-Jan-2021 06:30:21 PM] [INFO] default - API CALL STARTED (API NAME: GetAuthenticationResponseDataRequest, User Id: 'demoassessorelec@gmail.com')
-
-[14-Jan-2021 06:30:21 PM] [INFO] default - Missing/Invalid Password (API NAME: GetAuthenticationResponseDataRequest, User Id: 'demoassessorelec@gmail.com')
-
-[14-Jan-2021 06:30:21 PM] [INFO] default - API CALL ENDED (API NAME: GetAuthenticationResponseDataRequest, User Id: 'demoassessorelec@gmail.com')
-
-[14-Jan-2021 06:30:58 PM] [INFO] default - API CALL STARTED (API NAME: GetAuthenticationResponseDataRequest, User Id: null)
-
-[14-Jan-2021 06:30:58 PM] [INFO] default - Missing/Invalid UserId (API NAME: GetAuthenticationResponseDataRequest)
-
-[14-Jan-2021 06:30:58 PM] [INFO] default - API CALL ENDED (API NAME: GetAuthenticationResponseDataRequest, User Id: null)
-
-[14-Jan-2021 06:31:11 PM] [INFO] default - API CALL STARTED (API NAME: GetAuthenticationResponseDataRequest, User Id: null)
-
-[14-Jan-2021 06:31:11 PM] [INFO] default - Missing/Invalid UserId (API NAME: GetAuthenticationResponseDataRequest)
-
-[14-Jan-2021 06:31:11 PM] [INFO] default - API CALL ENDED (API NAME: GetAuthenticationResponseDataRequest, User Id: null)
-
-[14-Jan-2021 06:35:51 PM] [INFO] default - API CALL STARTED (API NAME: GetAuthenticationResponseDataRequest, User Id: 'demoassessorelec@gmail.com')
-
-[14-Jan-2021 06:35:51 PM] [INFO] default - API CALL ENDED (API NAME: GetAuthenticationResponseDataRequest, User Id: 'demoassessorelec@gmail.com')
-
-[14-Jan-2021 06:36:02 PM] [INFO] default - API CALL STARTED (API NAME: GetAuthenticationResponseDataRequest, User Id: 'demoassessorelec@gmail.com')
-
-[14-Jan-2021 06:36:03 PM] [INFO] default - API CALL ENDED (API NAME: GetAuthenticationResponseDataRequest, User Id: 'demoassessorelec@gmail.com')
-
-[14-Jan-2021 06:40:10 PM] [INFO] default - API CALL STARTED (API NAME: GetAuthenticationResponseDataRequest, User Id: 'demoassessorelec@gmail.com')
-
-[14-Jan-2021 06:40:11 PM] [INFO] default - API CALL ENDED (API NAME: GetAuthenticationResponseDataRequest, User Id: 'demoassessorelec@gmail.com')
-
-[14-Jan-2021 06:41:41 PM] [INFO] default - API CALL STARTED (API NAME: GetAuthenticationResponseDataRequest, User Id: 'demoassessorelec@gmail.com')
-
-[14-Jan-2021 06:41:42 PM] [INFO] default - API CALL ENDED (API NAME: GetAuthenticationResponseDataRequest, User Id: 'demoassessorelec@gmail.com')
+[14-Jan-2021 06:46:44 PM] [INFO] default - API CALL ENDED (API NAME: GetAuthenticationResponseDataRequest, User Id: 'demoassessorelec@gmail.com')
 
