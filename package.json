@@ -19,11 +19,16 @@
   "homepage": "https://github.com/Navriti-Technologies/UAP_CERTIPLATE_API#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "fs": "0.0.1-security",
+    "jsonwebtoken": "^8.5.1",
+    "log4js": "^6.3.0",
     "multer": "^1.4.2",
     "nodemon": "^2.0.7",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
     "pg": "^8.5.1"
   }
 }
