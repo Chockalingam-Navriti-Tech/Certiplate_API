@@ -104,3 +104,63 @@
 
 [14-Jan-2021 10:13:49 PM] [INFO] default - API CALL ENDED (API NAME: GetStatewiseAssessorCountDataRequest, User Id: 76841)
 
+[14-Jan-2021 10:28:39 PM] [INFO] default - API CALL STARTED (API NAME: GetQPwiseAssessorCertificationStatusCountDataRequest, User Id: 76841)
+
+[14-Jan-2021 10:28:39 PM] [INFO] default - API CALL ENDED (API NAME: GetQPwiseAssessorCertificationStatusCountDataRequest, User Id: 76841)
+
+[14-Jan-2021 10:28:39 PM] [INFO] default - Unauthorized API Request! (API NAME: GetQPwiseAssessorCertificationStatusCountDataRequest, User Id: 76841)
+
+[14-Jan-2021 10:28:51 PM] [INFO] default - API CALL STARTED (API NAME: GetQPwiseAssessorCertificationStatusCountDataRequest, User Id: 76841)
+
+[14-Jan-2021 10:28:51 PM] [INFO] default - API CALL ENDED (API NAME: GetQPwiseAssessorCertificationStatusCountDataRequest, User Id: 76841)
+
+[14-Jan-2021 10:29:28 PM] [INFO] default - API CALL STARTED (API NAME: GetQPwiseAssessorCertificationStatusCountDataRequest, User Id: 76841)
+
+[14-Jan-2021 10:29:28 PM] [INFO] default - API CALL ENDED (API NAME: GetQPwiseAssessorCertificationStatusCountDataRequest, User Id: 76841)
+
+[14-Jan-2021 10:29:49 PM] [INFO] default - API CALL STARTED (API NAME: GetQPwiseAssessorCertificationStatusCountDataRequest, User Id: null)
+
+[14-Jan-2021 10:29:49 PM] [INFO] default - Missing/Invalid SectorId (API NAME: GetQPwiseAssessorCertificationStatusCountDataRequest)
+
+[14-Jan-2021 10:29:49 PM] [INFO] default - API CALL ENDED (API NAME: GetQPwiseAssessorCertificationStatusCountDataRequest, User Id: null)
+
+[14-Jan-2021 10:29:53 PM] [INFO] default - API CALL STARTED (API NAME: GetQPwiseAssessorCertificationStatusCountDataRequest, User Id: null)
+
+[14-Jan-2021 10:29:53 PM] [INFO] default - Missing/Invalid UserRoleId (API NAME: GetQPwiseAssessorCertificationStatusCountDataRequest)
+
+[14-Jan-2021 10:29:53 PM] [INFO] default - API CALL ENDED (API NAME: GetQPwiseAssessorCertificationStatusCountDataRequest, User Id: null)
+
+[14-Jan-2021 10:29:58 PM] [INFO] default - API CALL STARTED (API NAME: GetQPwiseAssessorCertificationStatusCountDataRequest, User Id: null)
+
+[14-Jan-2021 10:29:58 PM] [INFO] default - Missing/Invalid UserId (API NAME: GetQPwiseAssessorCertificationStatusCountDataRequest)
+
+[14-Jan-2021 10:29:58 PM] [INFO] default - API CALL ENDED (API NAME: GetQPwiseAssessorCertificationStatusCountDataRequest, User Id: null)
+
+[14-Jan-2021 10:30:01 PM] [INFO] default - API CALL STARTED (API NAME: GetQPwiseAssessorCertificationStatusCountDataRequest, User Id: 76841)
+
+[14-Jan-2021 10:30:01 PM] [INFO] default - API CALL ENDED (API NAME: GetQPwiseAssessorCertificationStatusCountDataRequest, User Id: 76841)
+
+[14-Jan-2021 10:30:04 PM] [INFO] default - API CALL STARTED (API NAME: GetQPwiseAssessorCertificationStatusCountDataRequest, User Id: 76841)
+
+[14-Jan-2021 10:30:04 PM] [INFO] default - API CALL ENDED (API NAME: GetQPwiseAssessorCertificationStatusCountDataRequest, User Id: 76841)
+
+[14-Jan-2021 10:30:04 PM] [INFO] default - Unauthorized API Request! (API NAME: GetQPwiseAssessorCertificationStatusCountDataRequest, User Id: 76841)
+
+[14-Jan-2021 10:30:16 PM] [INFO] default - API CALL STARTED (API NAME: GetAuthenticationResponseDataRequest, User Id: 'demoassessorelec@gmail.com')
+
+[14-Jan-2021 10:30:18 PM] [INFO] default - API CALL ENDED (API NAME: GetAuthenticationResponseDataRequest, User Id: 'demoassessorelec@gmail.com')
+
+[14-Jan-2021 10:30:19 PM] [INFO] default - API CALL STARTED (API NAME: GetQPwiseAssessorCertificationStatusCountDataRequest, User Id: 76841)
+
+[14-Jan-2021 10:30:19 PM] [INFO] default - API CALL ENDED (API NAME: GetQPwiseAssessorCertificationStatusCountDataRequest, User Id: 76841)
+
+[14-Jan-2021 10:33:24 PM] [INFO] default - API CALL STARTED (API NAME: GetQPwiseAssessorCertificationStatusCountDataRequest, User Id: 76841)
+
+[14-Jan-2021 10:33:24 PM] [INFO] default - API CALL ENDED (API NAME: GetQPwiseAssessorCertificationStatusCountDataRequest, User Id: 76841)
+
+[14-Jan-2021 10:33:24 PM] [INFO] default - Unauthorized API Request! (API NAME: GetQPwiseAssessorCertificationStatusCountDataRequest, User Id: 76841)
+
+[14-Jan-2021 10:33:48 PM] [INFO] default - API CALL STARTED (API NAME: GetQPwiseAssessorCertificationStatusCountDataRequest, User Id: 76841)
+
+[14-Jan-2021 10:33:49 PM] [INFO] default - API CALL ENDED (API NAME: GetQPwiseAssessorCertificationStatusCountDataRequest, User Id: 76841)
+
