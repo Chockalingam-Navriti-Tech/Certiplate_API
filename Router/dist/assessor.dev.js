@@ -378,5 +378,184 @@ router.post("/GetResetPasswordResponseDataRequest", passport.authenticate("jwt",
   } else {
     res.status(401).send("Unauthorized");
   }
+}); //Sectorwise Assessor Details API
+
+router.post("/GetSectorwiseAssessorCertificationStatusCountDataRequest", passport.authenticate("jwt", {
+  session: false
+}), function (req, res) {
+  var response = {
+    SectorwiseAssessorCertificationStatusCountData: {
+      StatusId: 0,
+      Message: null,
+      CertificationStatusData: []
+    }
+  };
+
+  if (!reqData.UserId || reqData.UserId < 0) {
+    log_info("Started", "GetSectorwiseAssessorCertificationStatusCountDataRequest", reqData.UserId);
+    response.SectorwiseAssessorCertificationStatusCountData.StatusId = -1;
+    response.SectorwiseAssessorCertificationStatusCountData.Message = "Missing/Invalid UserId";
+    log_info("Missing", "GetSectorwiseAssessorCertificationStatusCountDataRequest", reqData.UserId, "UserId");
+    log_info("Ended", "GetSectorwiseAssessorCertificationStatusCountDataRequest", reqData.UserId);
+    res.send(response);
+    return;
+  }
+
+  if (req.user.data.AuthenticationResponseData.UserId == reqData.UserId) {
+    if (!reqData.ApiKey || reqData.ApiKey != apikey) {
+      log_info("Started", "GetSectorwiseAssessorCertificationStatusCountDataRequest", reqData.UserId);
+      response.SectorwiseAssessorCertificationStatusCountData.StatusId = -1;
+      response.SectorwiseAssessorCertificationStatusCountData.Message = "Unauthorized API Request!";
+      log_info("Ended", "GetSectorwiseAssessorCertificationStatusCountDataRequest", reqData.UserId);
+      log_info("Unauthorized", "GetSectorwiseAssessorCertificationStatusCountDataRequest", reqData.UserId);
+      res.status(401).send(response);
+      return;
+    }
+
+    if (!reqData.UserRoleId || reqData.UserRoleId < 0) {
+      log_info("Started", "GetSectorwiseAssessorCertificationStatusCountDataRequest", reqData.UserRoleId);
+      response.SectorwiseAssessorCertificationStatusCountData.StatusId = -1;
+      response.SectorwiseAssessorCertificationStatusCountData.Message = "Missing/Invalid UserRoleId";
+      log_info("Missing", "GetSectorwiseAssessorCertificationStatusCountDataRequest", reqData.UserRoleId, "UserRoleId");
+      log_info("Ended", "GetSectorwiseAssessorCertificationStatusCountDataRequest", reqData.UserRoleId);
+      res.send(response);
+      return;
+    }
+
+    try {
+      log_info("Started", "GetSectorwiseAssessorCertificationStatusCountDataRequest", reqData.UserId); //throw new Error('error');
+
+      var connection = new db();
+      var query = "SELECT * from users.fn_get_sectorwise_assessor_certification_status_count_data(".concat(reqData.UserId, ",").concat(reqData.UserRoleId, ")");
+      connection.Query_Function(query, function (varlistData) {
+        response.SectorwiseAssessorCertificationStatusCountData.StatusId = 1;
+        response.SectorwiseAssessorCertificationStatusCountData.Message = "Success";
+        varlistData.forEach(function (element) {
+          response.SectorwiseAssessorCertificationStatusCountData.CertificationStatusData.push({
+            SectorId: parseInt(element["sector_id"]),
+            SectorName: element["sector_name"],
+            GovernmentLeadCount: parseInt(element["government_lead_count"]),
+            GovernmentApprovedCount: parseInt(element["government_approved_count"]),
+            GovernmentCertifiedCount: parseInt(element["government_certified_count"]),
+            GovernmentExpiredCount: parseInt(element["government_expired_count"]),
+            GovernmentTotalCount: parseInt(element["government_total_count"]),
+            GovernmentDistinctTotalCount: parseInt(element["government_distinct_total_count"]),
+            InstitutionLeadCount: parseInt(element["institution_lead_count"]),
+            InstitutionApprovedCount: parseInt(element["institution_approved_count"]),
+            InstitutionCertifiedCount: parseInt(element["institution_certified_count"]),
+            InstitutionTotalCount: parseInt(element["institution_total_count"]),
+            InstitutionDistinctTotalCount: parseInt(element["institution_distinct_total_count"]),
+            TotalCount: parseInt(element["total_count"]),
+            DistinctTotalCount: parseInt(element["distinct_total_count"])
+          });
+        });
+        log_info("Ended", "GetSectorwiseAssessorCertificationStatusCountDataRequest", reqData.UserId);
+        res.send(response);
+      });
+    } catch (err) {
+      log_error("GetSectorwiseAssessorCertificationStatusCountDataRequest", err);
+      log_info("Ended", "GetSectorwiseAssessorCertificationStatusCountDataRequest", reqData.UserId);
+      res.status(500).send("Error");
+    }
+  } else {
+    res.status(401).send("Unauthorized");
+  }
+}); //Statewise Assessor Details API
+
+router.post("/GetStatewiseAssessorCountDataRequest", passport.authenticate("jwt", {
+  session: false
+}), function (req, res) {
+  var response = {
+    StatewiseAssessorCountData: {
+      StatusId: 1,
+      Message: "Success",
+      StatewiseAssessorData: []
+    }
+  };
+
+  if (!reqData.UserId || reqData.UserId < 0) {
+    log_info("Started", "GetStatewiseAssessorCountDataRequest", reqData.UserId);
+    response.StatewiseAssessorCountData.StatusId = -1;
+    response.StatewiseAssessorCountData.Message = "Missing/Invalid UserId";
+    log_info("Missing", "GetStatewiseAssessorCountDataRequest", reqData.UserId, "UserId");
+    log_info("Ended", "GetStatewiseAssessorCountDataRequest", reqData.UserId);
+    res.send(response);
+    return;
+  }
+
+  if (req.user.data.AuthenticationResponseData.UserId == reqData.UserId) {
+    if (!reqData.ApiKey || reqData.ApiKey != apikey) {
+      log_info("Started", "GetStatewiseAssessorCountDataRequest", reqData.UserId);
+      response.StatewiseAssessorCountData.StatusId = -1;
+      response.StatewiseAssessorCountData.Message = "Unauthorized API Request!";
+      log_info("Ended", "GetStatewiseAssessorCountDataRequest", reqData.UserId);
+      log_info("Unauthorized", "GetStatewiseAssessorCountDataRequest", reqData.UserId);
+      res.status(401).send(response);
+      return;
+    }
+
+    if (!reqData.UserRoleId || reqData.UserRoleId < 0) {
+      log_info("Started", "GetStatewiseAssessorCountDataRequest", reqData.UserRoleId);
+      response.StatewiseAssessorCountData.StatusId = -1;
+      response.StatewiseAssessorCountData.Message = "Missing/Invalid UserRoleId";
+      log_info("Missing", "GetStatewiseAssessorCountDataRequest", reqData.UserRoleId, "UserRoleId");
+      log_info("Ended", "GetStatewiseAssessorCountDataRequest", reqData.UserRoleId);
+      res.send(response);
+      return;
+    }
+
+    if (!reqData.SectorId || reqData.SectorId < 0) {
+      log_info("Started", "GetStatewiseAssessorCountDataRequest", reqData.SectorId);
+      response.StatewiseAssessorCountData.StatusId = -1;
+      response.StatewiseAssessorCountData.Message = "Missing/Invalid SectorId";
+      log_info("Missing", "GetStatewiseAssessorCountDataRequest", reqData.SectorId, "SectorId");
+      log_info("Ended", "GetStatewiseAssessorCountDataRequest", reqData.SectorId);
+      res.send(response);
+      return;
+    }
+
+    if (!reqData.SearchType || reqData.SearchType < 0) {
+      log_info("Started", "GetStatewiseAssessorCountDataRequest", reqData.SearchType);
+      response.StatewiseAssessorCountData.StatusId = -1;
+      response.StatewiseAssessorCountData.Message = "Missing/Invalid SearchType";
+      log_info("Missing", "GetStatewiseAssessorCountDataRequest", reqData.SearchType, "SearchType");
+      log_info("Ended", "GetStatewiseAssessorCountDataRequest", reqData.SearchType);
+      res.send(response);
+      return;
+    }
+
+    try {
+      log_info("Started", "GetStatewiseAssessorCountDataRequest", reqData.UserId); //throw new Error('error');
+
+      var connection = new db();
+      var query;
+
+      if (reqData.QualificationPackId) {
+        query = "SELECT * from users.fn_get_statewise_assessor_certification_data(".concat(reqData.SectorId, ",").concat(reqData.QualificationPackId, ",").concat(reqData.UserId, ",").concat(reqData.UserRoleId, ")");
+      } else {
+        query = "SELECT * from users.fn_get_statewise_assessor_certification_data(".concat(reqData.SectorId, ",0,").concat(reqData.UserId, ",").concat(reqData.UserRoleId, ")");
+      }
+
+      connection.Query_Function(query, function (varlistData) {
+        response.StatewiseAssessorCountData.StatusId = 1;
+        response.StatewiseAssessorCountData.Message = "Success";
+        varlistData.forEach(function (element) {
+          response.StatewiseAssessorCountData.StatewiseAssessorData.push({
+            StateId: parseInt(element["state_id"]),
+            StateName: element["state_name"],
+            AssessorCount: parseInt(element["distinct_total_count"])
+          });
+        });
+        log_info("Ended", "GetStatewiseAssessorCountDataRequest", reqData.UserId);
+        res.send(response);
+      });
+    } catch (err) {
+      log_error("GetStatewiseAssessorCountDataRequest", err);
+      log_info("Ended", "GetStatewiseAssessorCountDataRequest", reqData.UserId);
+      res.status(500).send("Error");
+    }
+  } else {
+    res.status(401).send("Unauthorized");
+  }
 });
 module.exports = router;
