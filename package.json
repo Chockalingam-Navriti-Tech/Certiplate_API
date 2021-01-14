@@ -1,0 +1,27 @@
+{
+  "name": "UAP_CERTIPLATE_API",
+  "version": "1.0.0",
+  "description": "UAP Certiplate APIs developed on NodeJs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Navriti-Technologies/UAP_CERTIPLATE_API.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Navriti-Technologies/UAP_CERTIPLATE_API/issues"
+  },
+  "homepage": "https://github.com/Navriti-Technologies/UAP_CERTIPLATE_API#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "nodemon": "^2.0.7",
+    "pg": "^8.5.1"
+  }
+}
