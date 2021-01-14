@@ -28,6 +28,7 @@ var cookieparser = require("cookie-parser");
 
 var fs = require("fs");
 
+var apikey = "'" + process.env.apikey + "'";
 var reqData;
 dotenv.config();
 router.use(bodyparser.json());
@@ -77,9 +78,9 @@ passport.use(new JwtStrategy(opts, function _callee(payload, done) {
     }
   });
 }));
-router.use(passport.initialize());
+router.use(passport.initialize()); //Login API
+
 router.post("/GetAuthenticationResponseDataRequest", function (req, res) {
-  var apikey = "'" + process.env.apikey + "'";
   var response = {
     AuthenticationResponseData: {
       StatusId: 0,
@@ -166,7 +167,7 @@ router.post("/GetAuthenticationResponseDataRequest", function (req, res) {
         var token = jwt.sign({
           data: response
         }, fs.readFileSync("./RSA/rsa.private"), {
-          algorithm: 'RS256',
+          algorithm: "RS256",
           expiresIn: "1h"
         });
         res.cookie("jwt", token);
@@ -178,14 +179,202 @@ router.post("/GetAuthenticationResponseDataRequest", function (req, res) {
   } catch (err) {
     log_error("GetAuthenticationResponseDataRequest", err);
     log_info("Ended", "GetAuthenticationResponseDataRequest", reqData.UserId);
-    res.status(500).send('Error');
+    res.status(500).send("Error");
   }
-});
-router.post("/", passport.authenticate("jwt", {
+}); //Logout API
+
+router.post("/GetLogoutResponseDataRequest", passport.authenticate("jwt", {
   session: false
 }), function (req, res) {
+  var response = {
+    LogoutResponseData: {
+      StatusId: 0,
+      Message: null
+    }
+  };
+
+  if (!reqData.UserId || reqData.UserId < 0) {
+    log_info("Started", "GetLogoutResponseDataRequest", reqData.UserId);
+    response.LogoutResponseData.StatusId = -1;
+    response.LogoutResponseData.Message = "Missing/Invalid UserId";
+    log_info("Missing", "GetLogoutResponseDataRequest", reqData.UserId, "UserId");
+    log_info("Ended", "GetLogoutResponseDataRequest", reqData.UserId);
+    res.send(response);
+    return;
+  }
+
   if (req.user.data.AuthenticationResponseData.UserId == reqData.UserId) {
-    res.send("hi");
+    if (!reqData.ApiKey || reqData.ApiKey != apikey) {
+      log_info("Started", "GetLogoutResponseDataRequest", reqData.UserId);
+      response.LogoutResponseData.StatusId = -1;
+      response.LogoutResponseData.Message = "Unauthorized API Request!";
+      log_info("Ended", "GetLogoutResponseDataRequest", reqData.UserId);
+      log_info("Unauthorized", "GetLogoutResponseDataRequest", reqData.UserId);
+      res.status(401).send(response);
+      return;
+    }
+
+    if (!reqData.SessionId || reqData.SessionId < 0) {
+      log_info("Started", "GetLogoutResponseDataRequest", reqData.SessionId);
+      response.LogoutResponseData.StatusId = -1;
+      response.LogoutResponseData.Message = "Missing/Invalid SessionId";
+      log_info("Missing", "GetLogoutResponseDataRequest", reqData.SessionId, "SessionId");
+      log_info("Ended", "GetLogoutResponseDataRequest", reqData.SessionId);
+      res.send(response);
+      return;
+    }
+
+    try {
+      log_info("Started", "GetLogoutResponseDataRequest", reqData.UserId); //throw new Error('error');
+
+      var connection = new db();
+      var query = "SELECT * from users.fn_get_logout_response_data(".concat(reqData.UserId, ",").concat(reqData.SessionId, ")");
+      connection.Query_Function(query, function (varlistData) {
+        response.LogoutResponseData.StatusId = varlistData[0]["status_id"];
+        response.LogoutResponseData.Message = varlistData[0]["message"];
+        log_info("Ended", "GetLogoutResponseDataRequest", reqData.UserId);
+        res.clearCookie("jwt");
+        res.send(response);
+      });
+    } catch (err) {
+      log_error("GetLogoutResponseDataRequest", err);
+      log_info("Ended", "GetLogoutResponseDataRequest", reqData.UserId);
+      res.status(500).send("Error");
+    }
+  } else {
+    res.status(401).send("Unauthorized");
+  }
+}); //Change Password API
+
+router.post("/ChangeUserPasswordRequest", passport.authenticate("jwt", {
+  session: false
+}), function (req, res) {
+  var response = {
+    ChangeUserPasswordData: {
+      StatusId: 0,
+      Message: null
+    }
+  };
+
+  if (!reqData.UserId || reqData.UserId < 0) {
+    log_info("Started", "ChangeUserPasswordRequest", reqData.UserId);
+    response.ChangeUserPasswordData.StatusId = -1;
+    response.ChangeUserPasswordData.Message = "Missing/Invalid UserId";
+    log_info("Missing", "ChangeUserPasswordRequest", reqData.UserId, "UserId");
+    log_info("Ended", "ChangeUserPasswordRequest", reqData.UserId);
+    res.send(response);
+    return;
+  }
+
+  if (req.user.data.AuthenticationResponseData.UserId == reqData.UserId) {
+    if (!reqData.ApiKey || reqData.ApiKey != apikey) {
+      log_info("Started", "ChangeUserPasswordRequest", reqData.UserId);
+      response.ChangeUserPasswordData.StatusId = -1;
+      response.ChangeUserPasswordData.Message = "Unauthorized API Request!";
+      log_info("Ended", "ChangeUserPasswordRequest", reqData.UserId);
+      log_info("Unauthorized", "ChangeUserPasswordRequest", reqData.UserId);
+      res.status(401).send(response);
+      return;
+    }
+
+    if (!reqData.OldPassword || reqData.OldPassword < 0) {
+      log_info("Started", "ChangeUserPasswordRequest", reqData.OldPassword);
+      response.ChangeUserPasswordData.StatusId = -1;
+      response.ChangeUserPasswordData.Message = "Missing/Invalid OldPassword";
+      log_info("Missing", "ChangeUserPasswordRequest", reqData.OldPassword, "OldPassword");
+      log_info("Ended", "ChangeUserPasswordRequest", reqData.OldPassword);
+      res.send(response);
+      return;
+    }
+
+    if (!reqData.NewPassword || reqData.NewPassword < 0) {
+      log_info("Started", "ChangeUserPasswordRequest", reqData.NewPassword);
+      response.ChangeUserPasswordData.StatusId = -1;
+      response.ChangeUserPasswordData.Message = "Missing/Invalid NewPassword";
+      log_info("Missing", "ChangeUserPasswordRequest", reqData.NewPassword, "NewPassword");
+      log_info("Ended", "ChangeUserPasswordRequest", reqData.NewPassword);
+      res.send(response);
+      return;
+    }
+
+    try {
+      log_info("Started", "ChangeUserPasswordRequest", reqData.UserId); //throw new Error('error');
+
+      var connection = new db();
+      var query = "SELECT * from users.fn_change_user_password(".concat(reqData.UserId, ",").concat(reqData.OldPassword, ",").concat(reqData.NewPassword, ")");
+      connection.Query_Function(query, function (varlistData) {
+        response.ChangeUserPasswordData.StatusId = varlistData[0]["status_id"];
+        response.ChangeUserPasswordData.Message = varlistData[0]["message"];
+        log_info("Ended", "ChangeUserPasswordRequest", reqData.UserId);
+        res.send(response);
+      });
+    } catch (err) {
+      log_error("ChangeUserPasswordRequest", err);
+      log_info("Ended", "ChangeUserPasswordRequest", reqData.UserId);
+      res.status(500).send("Error");
+    }
+  } else {
+    res.status(401).send("Unauthorized");
+  }
+}); //Reset Password API
+
+router.post("/GetResetPasswordResponseDataRequest", passport.authenticate("jwt", {
+  session: false
+}), function (req, res) {
+  var response = {
+    ResetPasswordResponseData: {
+      StatusId: 0,
+      Message: null
+    }
+  };
+
+  if (!reqData.UserId || reqData.UserId < 0) {
+    log_info("Started", "GetResetPasswordResponseDataRequest", reqData.UserId);
+    response.ResetPasswordResponseData.StatusId = -1;
+    response.ResetPasswordResponseData.Message = "Missing/Invalid UserId";
+    log_info("Missing", "GetResetPasswordResponseDataRequest", reqData.UserId, "UserId");
+    log_info("Ended", "GetResetPasswordResponseDataRequest", reqData.UserId);
+    res.send(response);
+    return;
+  }
+
+  if (req.user.data.AuthenticationResponseData.UserId == reqData.UserId) {
+    if (!reqData.ApiKey || reqData.ApiKey != apikey) {
+      log_info("Started", "GetResetPasswordResponseDataRequest", reqData.UserId);
+      response.ResetPasswordResponseData.StatusId = -1;
+      response.ResetPasswordResponseData.Message = "Unauthorized API Request!";
+      log_info("Ended", "GetResetPasswordResponseDataRequest", reqData.UserId);
+      log_info("Unauthorized", "GetResetPasswordResponseDataRequest", reqData.UserId);
+      res.status(401).send(response);
+      return;
+    }
+
+    if (!reqData.Password || reqData.Password < 0) {
+      log_info("Started", "GetResetPasswordResponseDataRequest", reqData.Password);
+      response.ResetPasswordResponseData.StatusId = -1;
+      response.ResetPasswordResponseData.Message = "Missing/Invalid Password";
+      log_info("Missing", "GetResetPasswordResponseDataRequest", reqData.Password, "Password");
+      log_info("Ended", "GetResetPasswordResponseDataRequest", reqData.Password);
+      res.send(response);
+      return;
+    }
+
+    try {
+      log_info("Started", "GetResetPasswordResponseDataRequest", reqData.UserId); //throw new Error('error');
+
+      var connection = new db();
+      var query = "SELECT * from users.fn_get_reset_password_response_data(".concat(reqData.UserId, ",").concat(reqData.Password, ")");
+      connection.Query_Function(query, function (varlistData) {
+        response.ResetPasswordResponseData.StatusId = varlistData[0]["status_id"];
+        response.ResetPasswordResponseData.Message = varlistData[0]["message"];
+        log_info("Ended", "GetResetPasswordResponseDataRequest", reqData.UserId);
+        res.send(response);
+      });
+    } catch (err) {
+      log_error("GetResetPasswordResponseDataRequest", err);
+      log_info("Ended", "GetResetPasswordResponseDataRequest", reqData.UserId);
+      res.status(500).send("Error");
+    }
   } else {
     res.status(401).send("Unauthorized");
   }

@@ -2,3 +2,155 @@
 
 [14-Jan-2021 06:46:44 PM] [INFO] default - API CALL ENDED (API NAME: GetAuthenticationResponseDataRequest, User Id: 'demoassessorelec@gmail.com')
 
+[14-Jan-2021 08:17:32 PM] [INFO] default - API CALL STARTED (API NAME: GetAuthenticationResponseDataRequest, User Id: 'demoassessorelec@gmail.com')
+
+[14-Jan-2021 08:17:33 PM] [INFO] default - API CALL ENDED (API NAME: GetAuthenticationResponseDataRequest, User Id: 'demoassessorelec@gmail.com')
+
+[14-Jan-2021 08:17:59 PM] [INFO] default - API CALL STARTED (API NAME: GetLogoutResponseDataRequest, User Id: 76841)
+
+[14-Jan-2021 08:18:15 PM] [INFO] default - API CALL STARTED (API NAME: GetLogoutResponseDataRequest, User Id: 76841)
+
+[14-Jan-2021 08:18:18 PM] [INFO] default - API CALL ENDED (API NAME: GetLogoutResponseDataRequest, User Id: 76841)
+
+[14-Jan-2021 08:18:22 PM] [INFO] default - API CALL STARTED (API NAME: GetLogoutResponseDataRequest, User Id: 76841)
+
+[14-Jan-2021 08:18:22 PM] [INFO] default - API CALL ENDED (API NAME: GetLogoutResponseDataRequest, User Id: 76841)
+
+[14-Jan-2021 08:18:54 PM] [INFO] default - API CALL STARTED (API NAME: GetLogoutResponseDataRequest, User Id: 76841)
+
+[14-Jan-2021 08:18:54 PM] [INFO] default - API CALL ENDED (API NAME: GetLogoutResponseDataRequest, User Id: 76841)
+
+[14-Jan-2021 08:18:54 PM] [INFO] default - Unauthorized API Request! (API NAME: GetLogoutResponseDataRequest, User Id: 76841)
+
+[14-Jan-2021 08:19:30 PM] [INFO] default - API CALL STARTED (API NAME: GetLogoutResponseDataRequest, User Id: 76841)
+
+[14-Jan-2021 08:19:31 PM] [INFO] default - API CALL ENDED (API NAME: GetLogoutResponseDataRequest, User Id: 76841)
+
+[14-Jan-2021 08:19:36 PM] [INFO] default - API CALL STARTED (API NAME: GetAuthenticationResponseDataRequest, User Id: 'demoassessorelec@gmail.com')
+
+[14-Jan-2021 08:19:37 PM] [INFO] default - API CALL ENDED (API NAME: GetAuthenticationResponseDataRequest, User Id: 'demoassessorelec@gmail.com')
+
+[14-Jan-2021 08:19:55 PM] [INFO] default - API CALL STARTED (API NAME: GetLogoutResponseDataRequest, User Id: null)
+
+[14-Jan-2021 08:19:55 PM] [INFO] default - Missing/Invalid SessionId (API NAME: GetLogoutResponseDataRequest)
+
+[14-Jan-2021 08:19:55 PM] [INFO] default - API CALL ENDED (API NAME: GetLogoutResponseDataRequest, User Id: null)
+
+[14-Jan-2021 08:21:11 PM] [INFO] default - API CALL STARTED (API NAME: GetLogoutResponseDataRequest, User Id: null)
+
+[14-Jan-2021 08:21:38 PM] [INFO] default - API CALL STARTED (API NAME: GetLogoutResponseDataRequest, User Id: null)
+
+[14-Jan-2021 08:21:38 PM] [INFO] default - Missing/Invalid UserId (API NAME: GetLogoutResponseDataRequest)
+
+[14-Jan-2021 08:21:38 PM] [INFO] default - API CALL ENDED (API NAME: GetLogoutResponseDataRequest, User Id: null)
+
+[14-Jan-2021 08:21:43 PM] [INFO] default - API CALL STARTED (API NAME: GetLogoutResponseDataRequest, User Id: null)
+
+[14-Jan-2021 08:21:43 PM] [INFO] default - Missing/Invalid SessionId (API NAME: GetLogoutResponseDataRequest)
+
+[14-Jan-2021 08:21:43 PM] [INFO] default - API CALL ENDED (API NAME: GetLogoutResponseDataRequest, User Id: null)
+
+[14-Jan-2021 08:21:46 PM] [INFO] default - API CALL STARTED (API NAME: GetLogoutResponseDataRequest, User Id: 76841)
+
+[14-Jan-2021 08:21:46 PM] [INFO] default - API CALL ENDED (API NAME: GetLogoutResponseDataRequest, User Id: 76841)
+
+[14-Jan-2021 08:21:46 PM] [INFO] default - Unauthorized API Request! (API NAME: GetLogoutResponseDataRequest, User Id: 76841)
+
+[14-Jan-2021 08:21:54 PM] [INFO] default - API CALL STARTED (API NAME: GetLogoutResponseDataRequest, User Id: 76841)
+
+[14-Jan-2021 08:21:55 PM] [INFO] default - API CALL ENDED (API NAME: GetLogoutResponseDataRequest, User Id: 76841)
+
+[14-Jan-2021 08:22:46 PM] [INFO] default - API CALL STARTED (API NAME: GetAuthenticationResponseDataRequest, User Id: 'demoassessorelec@gmail.com')
+
+[14-Jan-2021 08:22:47 PM] [INFO] default - API CALL ENDED (API NAME: GetAuthenticationResponseDataRequest, User Id: 'demoassessorelec@gmail.com')
+
+[14-Jan-2021 08:22:52 PM] [INFO] default - API CALL STARTED (API NAME: GetLogoutResponseDataRequest, User Id: 76841)
+
+[14-Jan-2021 08:22:53 PM] [INFO] default - API CALL ENDED (API NAME: GetLogoutResponseDataRequest, User Id: 76841)
+
+[14-Jan-2021 08:23:12 PM] [INFO] default - API CALL STARTED (API NAME: GetAuthenticationResponseDataRequest, User Id: 'demoassessorelec@gmail.com')
+
+[14-Jan-2021 08:23:13 PM] [INFO] default - API CALL ENDED (API NAME: GetAuthenticationResponseDataRequest, User Id: 'demoassessorelec@gmail.com')
+
+[14-Jan-2021 08:23:25 PM] [INFO] default - API CALL STARTED (API NAME: GetLogoutResponseDataRequest, User Id: 76841)
+
+[14-Jan-2021 08:23:26 PM] [INFO] default - API CALL ENDED (API NAME: GetLogoutResponseDataRequest, User Id: 76841)
+
+[14-Jan-2021 08:30:21 PM] [INFO] default - API CALL STARTED (API NAME: GetAuthenticationResponseDataRequest, User Id: 'demoassessorelec@gmail.com')
+
+[14-Jan-2021 08:30:22 PM] [INFO] default - API CALL ENDED (API NAME: GetAuthenticationResponseDataRequest, User Id: 'demoassessorelec@gmail.com')
+
+[14-Jan-2021 08:30:26 PM] [INFO] default - API CALL STARTED (API NAME: ChangeUserPasswordRequest, User Id: 76841)
+
+[14-Jan-2021 08:30:26 PM] [INFO] default - API CALL ENDED (API NAME: ChangeUserPasswordRequest, User Id: 76841)
+
+[14-Jan-2021 08:30:37 PM] [INFO] default - API CALL STARTED (API NAME: ChangeUserPasswordRequest, User Id: null)
+
+[14-Jan-2021 08:30:37 PM] [INFO] default - Missing/Invalid UserId (API NAME: ChangeUserPasswordRequest)
+
+[14-Jan-2021 08:30:37 PM] [INFO] default - API CALL ENDED (API NAME: ChangeUserPasswordRequest, User Id: null)
+
+[14-Jan-2021 08:30:41 PM] [INFO] default - API CALL STARTED (API NAME: ChangeUserPasswordRequest, User Id: 76841)
+
+[14-Jan-2021 08:30:41 PM] [INFO] default - API CALL ENDED (API NAME: ChangeUserPasswordRequest, User Id: 76841)
+
+[14-Jan-2021 08:30:41 PM] [INFO] default - Unauthorized API Request! (API NAME: ChangeUserPasswordRequest, User Id: 76841)
+
+[14-Jan-2021 08:30:45 PM] [INFO] default - API CALL STARTED (API NAME: ChangeUserPasswordRequest, User Id: null)
+
+[14-Jan-2021 08:30:45 PM] [INFO] default - Missing/Invalid OldPassword (API NAME: ChangeUserPasswordRequest)
+
+[14-Jan-2021 08:30:45 PM] [INFO] default - API CALL ENDED (API NAME: ChangeUserPasswordRequest, User Id: null)
+
+[14-Jan-2021 08:30:49 PM] [INFO] default - API CALL STARTED (API NAME: ChangeUserPasswordRequest, User Id: null)
+
+[14-Jan-2021 08:30:49 PM] [INFO] default - Missing/Invalid NewPassword (API NAME: ChangeUserPasswordRequest)
+
+[14-Jan-2021 08:30:49 PM] [INFO] default - API CALL ENDED (API NAME: ChangeUserPasswordRequest, User Id: null)
+
+[14-Jan-2021 08:30:53 PM] [INFO] default - API CALL STARTED (API NAME: ChangeUserPasswordRequest, User Id: 76841)
+
+[14-Jan-2021 08:30:54 PM] [INFO] default - API CALL ENDED (API NAME: ChangeUserPasswordRequest, User Id: 76841)
+
+[14-Jan-2021 08:30:58 PM] [INFO] default - API CALL STARTED (API NAME: ChangeUserPasswordRequest, User Id: 76841)
+
+[14-Jan-2021 08:30:58 PM] [INFO] default - API CALL ENDED (API NAME: ChangeUserPasswordRequest, User Id: 76841)
+
+[14-Jan-2021 08:31:04 PM] [INFO] default - API CALL STARTED (API NAME: ChangeUserPasswordRequest, User Id: 76841)
+
+[14-Jan-2021 08:31:04 PM] [INFO] default - API CALL ENDED (API NAME: ChangeUserPasswordRequest, User Id: 76841)
+
+[14-Jan-2021 08:36:53 PM] [INFO] default - API CALL STARTED (API NAME: GetResetPasswordResponseDataRequest, User Id: 76841)
+
+[14-Jan-2021 08:36:53 PM] [INFO] default - API CALL ENDED (API NAME: GetResetPasswordResponseDataRequest, User Id: 76841)
+
+[14-Jan-2021 08:36:59 PM] [INFO] default - API CALL STARTED (API NAME: GetResetPasswordResponseDataRequest, User Id: 76841)
+
+[14-Jan-2021 08:36:59 PM] [INFO] default - API CALL ENDED (API NAME: GetResetPasswordResponseDataRequest, User Id: 76841)
+
+[14-Jan-2021 08:37:04 PM] [INFO] default - API CALL STARTED (API NAME: GetResetPasswordResponseDataRequest, User Id: 76841)
+
+[14-Jan-2021 08:37:04 PM] [INFO] default - API CALL ENDED (API NAME: GetResetPasswordResponseDataRequest, User Id: 76841)
+
+[14-Jan-2021 08:37:07 PM] [INFO] default - API CALL STARTED (API NAME: GetResetPasswordResponseDataRequest, User Id: null)
+
+[14-Jan-2021 08:37:07 PM] [INFO] default - Missing/Invalid UserId (API NAME: GetResetPasswordResponseDataRequest)
+
+[14-Jan-2021 08:37:07 PM] [INFO] default - API CALL ENDED (API NAME: GetResetPasswordResponseDataRequest, User Id: null)
+
+[14-Jan-2021 08:37:10 PM] [INFO] default - API CALL STARTED (API NAME: GetResetPasswordResponseDataRequest, User Id: null)
+
+[14-Jan-2021 08:37:10 PM] [INFO] default - Missing/Invalid Password (API NAME: GetResetPasswordResponseDataRequest)
+
+[14-Jan-2021 08:37:10 PM] [INFO] default - API CALL ENDED (API NAME: GetResetPasswordResponseDataRequest, User Id: null)
+
+[14-Jan-2021 08:37:13 PM] [INFO] default - API CALL STARTED (API NAME: GetResetPasswordResponseDataRequest, User Id: 76841)
+
+[14-Jan-2021 08:37:13 PM] [INFO] default - API CALL ENDED (API NAME: GetResetPasswordResponseDataRequest, User Id: 76841)
+
+[14-Jan-2021 08:37:13 PM] [INFO] default - Unauthorized API Request! (API NAME: GetResetPasswordResponseDataRequest, User Id: 76841)
+
+[14-Jan-2021 08:37:30 PM] [INFO] default - API CALL STARTED (API NAME: GetResetPasswordResponseDataRequest, User Id: 76841)
+
+[14-Jan-2021 08:37:30 PM] [INFO] default - API CALL ENDED (API NAME: GetResetPasswordResponseDataRequest, User Id: 76841)
+
