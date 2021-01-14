@@ -652,5 +652,133 @@ router.post("/GetQPwiseAssessorCertificationStatusCountDataRequest", passport.au
   } else {
     res.status(401).send("Unauthorized");
   }
+}); //Assessor Certification Details API
+
+router.post("/GetAssessorCertificationDetailedDataRequest", passport.authenticate("jwt", {
+  session: false
+}), function (req, res) {
+  var response = {
+    AssessorCertificationDetailedData: {
+      StatusId: 0,
+      Message: null,
+      AssessorData: []
+    }
+  };
+
+  if (!reqData.UserId || reqData.UserId < 0) {
+    log_info("Started", "GetAssessorCertificationDetailedDataRequest", reqData.UserId);
+    response.AssessorCertificationDetailedData.StatusId = -1;
+    response.AssessorCertificationDetailedData.Message = "Missing/Invalid UserId";
+    log_info("Missing", "GetAssessorCertificationDetailedDataRequest", reqData.UserId, "UserId");
+    log_info("Ended", "GetAssessorCertificationDetailedDataRequest", reqData.UserId);
+    res.send(response);
+    return;
+  }
+
+  if (req.user.data.AuthenticationResponseData.UserId == reqData.UserId) {
+    if (!reqData.ApiKey || reqData.ApiKey != apikey) {
+      log_info("Started", "GetAssessorCertificationDetailedDataRequest", reqData.UserId);
+      response.AssessorCertificationDetailedData.StatusId = -1;
+      response.AssessorCertificationDetailedData.Message = "Unauthorized API Request!";
+      log_info("Ended", "GetAssessorCertificationDetailedDataRequest", reqData.UserId);
+      log_info("Unauthorized", "GetAssessorCertificationDetailedDataRequest", reqData.UserId);
+      res.status(401).send(response);
+      return;
+    }
+
+    if (!reqData.UserRoleId || reqData.UserRoleId < 0) {
+      log_info("Started", "GetAssessorCertificationDetailedDataRequest", reqData.UserRoleId);
+      response.AssessorCertificationDetailedData.StatusId = -1;
+      response.AssessorCertificationDetailedData.Message = "Missing/Invalid UserRoleId";
+      log_info("Missing", "GetAssessorCertificationDetailedDataRequest", reqData.UserRoleId, "UserRoleId");
+      log_info("Ended", "GetAssessorCertificationDetailedDataRequest", reqData.UserRoleId);
+      res.send(response);
+      return;
+    }
+
+    if (!reqData.SectorId || reqData.SectorId < 0) {
+      log_info("Started", "GetAssessorCertificationDetailedDataRequest", reqData.SectorId);
+      response.AssessorCertificationDetailedData.StatusId = -1;
+      response.AssessorCertificationDetailedData.Message = "Missing/Invalid SectorId";
+      log_info("Missing", "GetAssessorCertificationDetailedDataRequest", reqData.SectorId, "SectorId");
+      log_info("Ended", "GetAssessorCertificationDetailedDataRequest", reqData.SectorId);
+      res.send(response);
+      return;
+    }
+
+    if (!reqData.SearchType || reqData.SearchType < 0) {
+      log_info("Started", "GetAssessorCertificationDetailedDataRequest", reqData.SearchType);
+      response.AssessorCertificationDetailedData.StatusId = -1;
+      response.AssessorCertificationDetailedData.Message = "Missing/Invalid SearchType";
+      log_info("Missing", "GetAssessorCertificationDetailedDataRequest", reqData.SearchType, "SearchType");
+      log_info("Ended", "GetAssessorCertificationDetailedDataRequest", reqData.SearchType);
+      res.send(response);
+      return;
+    }
+
+    if (!reqData.StateId || reqData.StateId < 0) {
+      log_info("Started", "GetAssessorCertificationDetailedDataRequest", reqData.StateId);
+      response.AssessorCertificationDetailedData.StatusId = -1;
+      response.AssessorCertificationDetailedData.Message = "Missing/Invalid StateId";
+      log_info("Missing", "GetAssessorCertificationDetailedDataRequest", reqData.StateId, "StateId");
+      log_info("Ended", "GetAssessorCertificationDetailedDataRequest", reqData.StateId);
+      res.send(response);
+      return;
+    }
+
+    try {
+      log_info("Started", "GetAssessorCertificationDetailedDataRequest", reqData.UserId); //throw new Error('error');
+
+      var connection = new db();
+      var query;
+      if (reqData.QualificationPackId) query = "SELECT * from users.fn_get_assessor_certification_detailed_data(".concat(reqData.SectorId, ",").concat(reqData.QualificationPackId, ",").concat(reqData.SearchType, ",").concat(reqData.StateId, ",").concat(reqData.UserId, ",").concat(reqData.UserRoleId, ")");else query = "SELECT * from users.fn_get_assessor_certification_detailed_data(".concat(reqData.SectorId, ",0,").concat(reqData.SearchType, ",").concat(reqData.StateId, ",").concat(reqData.UserId, ",").concat(reqData.UserRoleId, ")");
+      connection.Query_Function(query, function (varlistData) {
+        response.AssessorCertificationDetailedData.StatusId = 1;
+        response.AssessorCertificationDetailedData.Message = "Success";
+        varlistData.forEach(function (element) {
+          response.AssessorCertificationDetailedData.AssessorData.push({
+            AssessorId: parseInt(element["assessor_id"]),
+            AssessorName: element["assessor_name"],
+            AssessorEmail: element["assessor_email"],
+            AssessorPhone: element["assessor_phone"],
+            AssessorAlternatePhone: element["assessor_alternate_phone"],
+            AllocationType: element["allocation_type"],
+            DateOfUpload: element["date_of_upload"],
+            District: element["district"],
+            State: element["state"],
+            AadhaarNumber: element["aadhar_no"],
+            PanCardNumber: element["pan_card_no"],
+            AssessorStatus: element["assessor_status"],
+            Sector: element["sector"],
+            QualificationPacks: element["qualification_packs"],
+            SscCertificationIssuedBy: element["ssc_certification_by"],
+            SscCertificateFileName: element["ssc_certification_file_name"] ? element["ssc_certification_file_name"] : "",
+            SscCertificationIssuedDate: element["ssc_certification_issued_date"],
+            SscCertificationExpiryDate: element["ssc_certification_expiry_date"],
+            LanguagesKnown: element["language_known"] ? element["language_known"] : "",
+            AssessorSource: element["assessor_source"],
+            SourcedByUserName: element["sourced_by_user_name"],
+            BankName: element["bank_name"],
+            BankAccountNumber: element["bank_account_no"],
+            IFSC: element["ifs_code"],
+            ChequeFileName: element["cheque_file_name"],
+            MouFileName: element["mou_file_name"],
+            AssessorImageFileName: element["assessor_image_file_name"],
+            ResumeFileName: element["assessor_resume_file_name"],
+            EducationCertificateFileName: element["education_certificate_file_name"] ? element["education_certificate_file_name"] : "",
+            ExperienceCertificateFileName: element["experience_certificate_file_name"] ? element["experience_certificate_file_name"] : ""
+          });
+        });
+        log_info("Ended", "GetAssessorCertificationDetailedDataRequest", reqData.UserId);
+        res.send(response);
+      });
+    } catch (err) {
+      log_error("GetAssessorCertificationDetailedDataRequest", err);
+      log_info("Ended", "GetAssessorCertificationDetailedDataRequest", reqData.UserId);
+      res.status(500).send("Error");
+    }
+  } else {
+    res.status(401).send("Unauthorized");
+  }
 });
 module.exports = router;
