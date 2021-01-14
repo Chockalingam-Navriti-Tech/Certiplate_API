@@ -48,7 +48,7 @@ opts.jwtFromRequest = function (req) {
   return token;
 };
 
-opts.secretOrKey = fs.readFileSync("./HMAC/secretKey.key", "utf-8");
+opts.secretOrKey = fs.readFileSync("./RSA/rsa.public");
 router.use(function (req, res, next) {
   reqData = Object.keys(req.query).length !== 0 ? req.query : req.body;
   next();
@@ -165,7 +165,8 @@ router.post("/GetAuthenticationResponseDataRequest", function (req, res) {
       if (varlistData[0]["message"] == "User authentication success") {
         var token = jwt.sign({
           data: response
-        }, fs.readFileSync("./HMAC/secretKey.key", "utf-8"), {
+        }, fs.readFileSync("./RSA/rsa.private"), {
+          algorithm: 'RS256',
           expiresIn: "1h"
         });
         res.cookie("jwt", token);
