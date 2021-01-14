@@ -4,10 +4,10 @@ const dotenv = require("dotenv");
 const bodyparser = require("body-parser");
 const multer = require("multer");
 const db = require("../DB_Connection/pg_connect");
-const schemas = require("../Schemas/assessor_api_schemas");
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
 const JwtStrategy = require("passport-jwt").Strategy;
+const { log_info, log_error } = require("../Settings/log");
 const upload = multer();
 const cookieparser = require("cookie-parser");
 const fs = require("fs");
@@ -20,7 +20,6 @@ router.use(bodyparser.urlencoded({ extended: false }));
 router.use(upload.array());
 router.use(cookieparser());
 
-
 var opts = {};
 opts.jwtFromRequest = (req) => {
     var token = null;
@@ -29,7 +28,7 @@ opts.jwtFromRequest = (req) => {
     }
     return token;
 };
-opts.secretOrKey = fs.readFileSync('./HMAC/secretKey.key', 'utf-8');
+opts.secretOrKey = fs.readFileSync("./HMAC/secretKey.key", "utf-8");
 
 router.use(function(req, res, next) {
     reqData = Object.keys(req.query).length !== 0 ? req.query : req.body;
@@ -51,41 +50,95 @@ router.use(passport.initialize());
 
 router.post("/GetAuthenticationResponseDataRequest", function(req, res) {
     var apikey = "'" + process.env.apikey + "'";
-    var response = schemas.authentication_response;
+    var response = {
+        AuthenticationResponseData: {
+            StatusId: 0,
+            Message: null,
+            UserId: 0,
+            UserName: "",
+            Email: "",
+            AccountStatus: 0,
+            EmailActivationStatus: 0,
+            UserRoleId: 0,
+            UserRoleName: "",
+            SessionId: "",
+        },
+    };
     if (!reqData.ApiKey || reqData.ApiKey != apikey) {
+        log_info("Started", "GetAuthenticationResponseDataRequest", reqData.UserId);
         response.AuthenticationResponseData.StatusId = -1;
         response.AuthenticationResponseData.Message = "Unauthorized API Request!";
+        log_info("Ended", "GetAuthenticationResponseDataRequest", reqData.UserId);
+        log_info(
+            "Unauthorized",
+            "GetAuthenticationResponseDataRequest",
+            reqData.UserId
+        );
         res.status(401).send(response);
         return;
     }
 
     if (!reqData.UserId || reqData.UserId < 0) {
+        log_info("Started", "GetAuthenticationResponseDataRequest", reqData.UserId);
         response.AuthenticationResponseData.StatusId = -1;
         response.AuthenticationResponseData.Message = "Missing/Invalid UserId";
+        log_info(
+            "Missing",
+            "GetAuthenticationResponseDataRequest",
+            reqData.UserId,
+            "UserId"
+        );
+        log_info("Ended", "GetAuthenticationResponseDataRequest", reqData.UserId);
         res.send(response);
         return;
     }
     if (!reqData.Password) {
+        log_info("Started", "GetAuthenticationResponseDataRequest", reqData.UserId);
         response.AuthenticationResponseData.StatusId = -1;
         response.AuthenticationResponseData.Message = "Missing/Invalid Password";
+        log_info(
+            "Missing",
+            "GetAuthenticationResponseDataRequest",
+            reqData.UserId,
+            "Password"
+        );
+        log_info("Ended", "GetAuthenticationResponseDataRequest", reqData.UserId);
         res.send(response);
         return;
     }
     if (!reqData.ClientIpAddress) {
+        log_info("Started", "GetAuthenticationResponseDataRequest", reqData.UserId);
         response.AuthenticationResponseData.StatusId = -1;
         response.AuthenticationResponseData.Message =
             "Missing/Invalid ClientIpAddress";
+        log_info("Ended", "GetAuthenticationResponseDataRequest", reqData.UserId);
+        log_info(
+            "Missing",
+            "GetAuthenticationResponseDataRequest",
+            reqData.UserId,
+            "ClientIpAddress"
+        );
         res.send(response);
         return;
     }
     if (!reqData.ClientBrowser) {
+        log_info("Started", "GetAuthenticationResponseDataRequest", reqData.UserId);
         response.AuthenticationResponseData.StatusId = -1;
         response.AuthenticationResponseData.Message =
             "Missing/Invalid ClientBrowser";
+        log_info("Ended", "GetAuthenticationResponseDataRequest", reqData.UserId);
+        log_info(
+            "Missing",
+            "GetAuthenticationResponseDataRequest",
+            reqData.UserId,
+            "ClientBrowser"
+        );
         res.send(response);
         return;
     }
     try {
+        log_info("Started", "GetAuthenticationResponseDataRequest", reqData.UserId);
+        //throw new Error('error');
         const connection = new db();
         const query = `SELECT * from users.fn_get_authentication_response_data(${reqData.UserId},${reqData.Password},${reqData.ClientIpAddress},${reqData.ClientBrowser})`;
         connection.Query_Function(query, function(varlistData) {
@@ -108,16 +161,19 @@ router.post("/GetAuthenticationResponseDataRequest", function(req, res) {
                 varlistData[0]["session_id"];
             if (varlistData[0]["message"] == "User authentication success") {
                 const token = jwt.sign({ data: response },
-                    fs.readFileSync("./HMAC/secretKey.key", 'utf-8'), {
+                    fs.readFileSync("./HMAC/secretKey.key", "utf-8"), {
                         expiresIn: "1h",
                     }
                 );
                 res.cookie("jwt", token);
             }
+            log_info("Ended", "GetAuthenticationResponseDataRequest", reqData.UserId);
             res.send(response);
         });
     } catch (err) {
-        console.log(err);
+        log_error("GetAuthenticationResponseDataRequest", err);
+        log_info("Ended", "GetAuthenticationResponseDataRequest", reqData.UserId);
+        res.status(500).send('Error');
     }
 });
 
@@ -125,7 +181,11 @@ router.post(
     "/",
     passport.authenticate("jwt", { session: false }),
     function(req, res) {
-        res.send("hi");
+        if (req.user.data.AuthenticationResponseData.UserId == reqData.UserId) {
+            res.send("hi");
+        } else {
+            res.status(401).send("Unauthorized");
+        }
     }
 );
 module.exports = router;
