@@ -13,6 +13,7 @@ class DB_Connect {
                 database: process.env.database,
                 password: process.env.password,
                 port: process.env.port,
+                max: 1500
             });
         } catch (err) {
             console.log(err);
@@ -20,9 +21,8 @@ class DB_Connect {
     }
     Query_Function(queries, callback) {
         this.pool.query(queries, (err, res) => {
-            console.log(err, res);
-            callback(res);
-            pool.end();
+            callback(res.rows);
+            this.pool.end();
         })
     }
 

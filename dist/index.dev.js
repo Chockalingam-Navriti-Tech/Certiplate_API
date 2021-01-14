@@ -7,17 +7,16 @@ var app = express(); //const https = require('https');
 var fs = require('fs'); //Import Routes
 
 
-var assessors = require('./Router/assessors');
+var assessors = require('./Router/assessor'); //const api_docs = require('./Router/api_docs');
 
-var api_docs = require('./Router/api_docs');
 /*const httpsServerOption = {
     'key': fs.readFileSync('./https/privatekey.pem'),
     'cert': fs.readFileSync('./https/certificate.pem')
 };*/
 //App level Middleware
+//app.use('/api', api_docs);
 
 
-app.use('/api', api_docs);
 app.use('/api/assessor', assessors); //Start the server
 //var httpsServer = https.createServer(httpsServerOption, app);
 

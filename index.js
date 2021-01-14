@@ -4,8 +4,8 @@ const app = express();
 const fs = require('fs');
 
 //Import Routes
-const assessors = require('./Router/assessors');
-const api_docs = require('./Router/api_docs');
+const assessors = require('./Router/assessor');
+//const api_docs = require('./Router/api_docs');
 
 /*const httpsServerOption = {
     'key': fs.readFileSync('./https/privatekey.pem'),
@@ -13,7 +13,7 @@ const api_docs = require('./Router/api_docs');
 };*/
 
 //App level Middleware
-app.use('/api', api_docs);
+//app.use('/api', api_docs);
 app.use('/api/assessor', assessors);
 
 
