@@ -221,16 +221,16 @@ router.post(
                 return;
             }
             if (!reqData.SessionId || reqData.SessionId < 0) {
-                log_info("Started", "GetLogoutResponseDataRequest", reqData.SessionId);
+                log_info("Started", "GetLogoutResponseDataRequest", reqData.UserId);
                 response.LogoutResponseData.StatusId = -1;
                 response.LogoutResponseData.Message = "Missing/Invalid SessionId";
                 log_info(
                     "Missing",
                     "GetLogoutResponseDataRequest",
-                    reqData.SessionId,
+                    reqData.UserId,
                     "SessionId"
                 );
-                log_info("Ended", "GetLogoutResponseDataRequest", reqData.SessionId);
+                log_info("Ended", "GetLogoutResponseDataRequest", reqData.UserId);
                 res.send(response);
                 return;
             }
@@ -294,30 +294,30 @@ router.post(
                 return;
             }
             if (!reqData.OldPassword || reqData.OldPassword < 0) {
-                log_info("Started", "ChangeUserPasswordRequest", reqData.OldPassword);
+                log_info("Started", "ChangeUserPasswordRequest", reqData.UserId);
                 response.ChangeUserPasswordData.StatusId = -1;
                 response.ChangeUserPasswordData.Message = "Missing/Invalid OldPassword";
                 log_info(
                     "Missing",
                     "ChangeUserPasswordRequest",
-                    reqData.OldPassword,
+                    reqData.UserId,
                     "OldPassword"
                 );
-                log_info("Ended", "ChangeUserPasswordRequest", reqData.OldPassword);
+                log_info("Ended", "ChangeUserPasswordRequest", reqData.UserId);
                 res.send(response);
                 return;
             }
             if (!reqData.NewPassword || reqData.NewPassword < 0) {
-                log_info("Started", "ChangeUserPasswordRequest", reqData.NewPassword);
+                log_info("Started", "ChangeUserPasswordRequest", reqData.UserId);
                 response.ChangeUserPasswordData.StatusId = -1;
                 response.ChangeUserPasswordData.Message = "Missing/Invalid NewPassword";
                 log_info(
                     "Missing",
                     "ChangeUserPasswordRequest",
-                    reqData.NewPassword,
+                    reqData.UserId,
                     "NewPassword"
                 );
-                log_info("Ended", "ChangeUserPasswordRequest", reqData.NewPassword);
+                log_info("Ended", "ChangeUserPasswordRequest", reqData.UserId);
                 res.send(response);
                 return;
             }
@@ -401,20 +401,20 @@ router.post(
                 log_info(
                     "Started",
                     "GetResetPasswordResponseDataRequest",
-                    reqData.Password
+                    reqData.UserId
                 );
                 response.ResetPasswordResponseData.StatusId = -1;
                 response.ResetPasswordResponseData.Message = "Missing/Invalid Password";
                 log_info(
                     "Missing",
                     "GetResetPasswordResponseDataRequest",
-                    reqData.Password,
+                    reqData.UserId,
                     "Password"
                 );
                 log_info(
                     "Ended",
                     "GetResetPasswordResponseDataRequest",
-                    reqData.Password
+                    reqData.UserId
                 );
                 res.send(response);
                 return;
@@ -518,7 +518,7 @@ router.post(
                 log_info(
                     "Started",
                     "GetSectorwiseAssessorCertificationStatusCountDataRequest",
-                    reqData.UserRoleId
+                    reqData.UserId
                 );
                 response.SectorwiseAssessorCertificationStatusCountData.StatusId = -1;
                 response.SectorwiseAssessorCertificationStatusCountData.Message =
@@ -526,13 +526,13 @@ router.post(
                 log_info(
                     "Missing",
                     "GetSectorwiseAssessorCertificationStatusCountDataRequest",
-                    reqData.UserRoleId,
+                    reqData.UserId,
                     "UserRoleId"
                 );
                 log_info(
                     "Ended",
                     "GetSectorwiseAssessorCertificationStatusCountDataRequest",
-                    reqData.UserRoleId
+                    reqData.UserId
                 );
                 res.send(response);
                 return;
@@ -672,7 +672,7 @@ router.post(
                 log_info(
                     "Started",
                     "GetStatewiseAssessorCountDataRequest",
-                    reqData.UserRoleId
+                    reqData.UserId
                 );
                 response.StatewiseAssessorCountData.StatusId = -1;
                 response.StatewiseAssessorCountData.Message =
@@ -680,13 +680,13 @@ router.post(
                 log_info(
                     "Missing",
                     "GetStatewiseAssessorCountDataRequest",
-                    reqData.UserRoleId,
+                    reqData.UserId,
                     "UserRoleId"
                 );
                 log_info(
                     "Ended",
                     "GetStatewiseAssessorCountDataRequest",
-                    reqData.UserRoleId
+                    reqData.UserId
                 );
                 res.send(response);
                 return;
@@ -695,7 +695,7 @@ router.post(
                 log_info(
                     "Started",
                     "GetStatewiseAssessorCountDataRequest",
-                    reqData.SectorId
+                    reqData.UserId
                 );
                 response.StatewiseAssessorCountData.StatusId = -1;
                 response.StatewiseAssessorCountData.Message =
@@ -703,13 +703,13 @@ router.post(
                 log_info(
                     "Missing",
                     "GetStatewiseAssessorCountDataRequest",
-                    reqData.SectorId,
+                    reqData.UserId,
                     "SectorId"
                 );
                 log_info(
                     "Ended",
                     "GetStatewiseAssessorCountDataRequest",
-                    reqData.SectorId
+                    reqData.UserId
                 );
                 res.send(response);
                 return;
@@ -718,7 +718,7 @@ router.post(
                 log_info(
                     "Started",
                     "GetStatewiseAssessorCountDataRequest",
-                    reqData.SearchType
+                    reqData.UserId
                 );
                 response.StatewiseAssessorCountData.StatusId = -1;
                 response.StatewiseAssessorCountData.Message =
@@ -726,13 +726,13 @@ router.post(
                 log_info(
                     "Missing",
                     "GetStatewiseAssessorCountDataRequest",
-                    reqData.SearchType,
+                    reqData.UserId,
                     "SearchType"
                 );
                 log_info(
                     "Ended",
                     "GetStatewiseAssessorCountDataRequest",
-                    reqData.SearchType
+                    reqData.UserId
                 );
                 res.send(response);
                 return;
@@ -846,7 +846,7 @@ router.post(
                 log_info(
                     "Started",
                     "GetQPwiseAssessorCertificationStatusCountDataRequest",
-                    reqData.UserRoleId
+                    reqData.UserId
                 );
                 response.QPwiseAssessorCertificationStatusCountData.StatusId = -1;
                 response.QPwiseAssessorCertificationStatusCountData.Message =
@@ -854,13 +854,13 @@ router.post(
                 log_info(
                     "Missing",
                     "GetQPwiseAssessorCertificationStatusCountDataRequest",
-                    reqData.UserRoleId,
+                    reqData.UserId,
                     "UserRoleId"
                 );
                 log_info(
                     "Ended",
                     "GetQPwiseAssessorCertificationStatusCountDataRequest",
-                    reqData.UserRoleId
+                    reqData.UserId
                 );
                 res.send(response);
                 return;
@@ -869,7 +869,7 @@ router.post(
                 log_info(
                     "Started",
                     "GetQPwiseAssessorCertificationStatusCountDataRequest",
-                    reqData.SectorId
+                    reqData.UserId
                 );
                 response.QPwiseAssessorCertificationStatusCountData.StatusId = -1;
                 response.QPwiseAssessorCertificationStatusCountData.Message =
@@ -877,13 +877,13 @@ router.post(
                 log_info(
                     "Missing",
                     "GetQPwiseAssessorCertificationStatusCountDataRequest",
-                    reqData.SectorId,
+                    reqData.UserId,
                     "SectorId"
                 );
                 log_info(
                     "Ended",
                     "GetQPwiseAssessorCertificationStatusCountDataRequest",
-                    reqData.SectorId
+                    reqData.UserId
                 );
                 res.send(response);
                 return;
@@ -1028,7 +1028,7 @@ router.post(
                 log_info(
                     "Started",
                     "GetAssessorCertificationDetailedDataRequest",
-                    reqData.UserRoleId
+                    reqData.UserId
                 );
                 response.AssessorCertificationDetailedData.StatusId = -1;
                 response.AssessorCertificationDetailedData.Message =
@@ -1036,13 +1036,13 @@ router.post(
                 log_info(
                     "Missing",
                     "GetAssessorCertificationDetailedDataRequest",
-                    reqData.UserRoleId,
+                    reqData.UserId,
                     "UserRoleId"
                 );
                 log_info(
                     "Ended",
                     "GetAssessorCertificationDetailedDataRequest",
-                    reqData.UserRoleId
+                    reqData.UserId
                 );
                 res.send(response);
                 return;
@@ -1051,7 +1051,7 @@ router.post(
                 log_info(
                     "Started",
                     "GetAssessorCertificationDetailedDataRequest",
-                    reqData.SectorId
+                    reqData.UserId
                 );
                 response.AssessorCertificationDetailedData.StatusId = -1;
                 response.AssessorCertificationDetailedData.Message =
@@ -1059,13 +1059,13 @@ router.post(
                 log_info(
                     "Missing",
                     "GetAssessorCertificationDetailedDataRequest",
-                    reqData.SectorId,
+                    reqData.UserId,
                     "SectorId"
                 );
                 log_info(
                     "Ended",
                     "GetAssessorCertificationDetailedDataRequest",
-                    reqData.SectorId
+                    reqData.UserId
                 );
                 res.send(response);
                 return;
@@ -1074,7 +1074,7 @@ router.post(
                 log_info(
                     "Started",
                     "GetAssessorCertificationDetailedDataRequest",
-                    reqData.SearchType
+                    reqData.UserId
                 );
                 response.AssessorCertificationDetailedData.StatusId = -1;
                 response.AssessorCertificationDetailedData.Message =
@@ -1082,13 +1082,13 @@ router.post(
                 log_info(
                     "Missing",
                     "GetAssessorCertificationDetailedDataRequest",
-                    reqData.SearchType,
+                    reqData.UserId,
                     "SearchType"
                 );
                 log_info(
                     "Ended",
                     "GetAssessorCertificationDetailedDataRequest",
-                    reqData.SearchType
+                    reqData.UserId
                 );
                 res.send(response);
                 return;
@@ -1097,7 +1097,7 @@ router.post(
                 log_info(
                     "Started",
                     "GetAssessorCertificationDetailedDataRequest",
-                    reqData.StateId
+                    reqData.UserId
                 );
                 response.AssessorCertificationDetailedData.StatusId = -1;
                 response.AssessorCertificationDetailedData.Message =
@@ -1105,13 +1105,13 @@ router.post(
                 log_info(
                     "Missing",
                     "GetAssessorCertificationDetailedDataRequest",
-                    reqData.StateId,
+                    reqData.UserId,
                     "StateId"
                 );
                 log_info(
                     "Ended",
                     "GetAssessorCertificationDetailedDataRequest",
-                    reqData.StateId
+                    reqData.UserId
                 );
                 res.send(response);
                 return;
@@ -1186,6 +1186,466 @@ router.post(
                 log_info(
                     "Ended",
                     "GetAssessorCertificationDetailedDataRequest",
+                    reqData.UserId
+                );
+                res.status(500).send("Error");
+            }
+        } else {
+            res.status(401).send("Unauthorized");
+        }
+    }
+);
+
+//Candidate Assessment Details API
+
+router.post(
+    "/GetAssessmentCandidateDataRequest",
+    passport.authenticate("jwt", { session: false }),
+    function(req, res) {
+        var response = {
+            AssessmentCandidateData: {
+                StatusId: 0,
+                Message: null,
+                RequestId: 0,
+                SDMSBatchId: "",
+                Candidates: [],
+            },
+        };
+        if (!reqData.UserId || reqData.UserId < 0) {
+            log_info("Started", "GetAssessmentCandidateDataRequest", reqData.UserId);
+            response.AssessmentCandidateData.StatusId = -1;
+            response.AssessmentCandidateData.Message = "Missing/Invalid UserId";
+            log_info(
+                "Missing",
+                "GetAssessmentCandidateDataRequest",
+                reqData.UserId,
+                "UserId"
+            );
+            log_info("Ended", "GetAssessmentCandidateDataRequest", reqData.UserId);
+            res.send(response);
+            return;
+        }
+        if (req.user.data.AuthenticationResponseData.UserId == reqData.UserId) {
+            if (!reqData.ApiKey || reqData.ApiKey != apikey) {
+                log_info(
+                    "Started",
+                    "GetAssessmentCandidateDataRequest",
+                    reqData.UserId
+                );
+                response.AssessmentCandidateData.StatusId = -1;
+                response.AssessmentCandidateData.Message = "Unauthorized API Request!";
+                log_info("Ended", "GetAssessmentCandidateDataRequest", reqData.UserId);
+                log_info(
+                    "Unauthorized",
+                    "GetAssessmentCandidateDataRequest",
+                    reqData.UserId
+                );
+                res.status(401).send(response);
+                return;
+            }
+            if (!reqData.RequestId || reqData.RequestId < 0) {
+                log_info(
+                    "Started",
+                    "GetAssessmentCandidateDataRequest",
+                    reqData.UserId
+                );
+                response.AssessmentCandidateData.StatusId = -1;
+                response.AssessmentCandidateData.Message = "Missing/Invalid RequestId";
+                log_info(
+                    "Missing",
+                    "GetAssessmentCandidateDataRequest",
+                    reqData.UserId,
+                    "RequestId"
+                );
+                log_info("Ended", "GetAssessmentCandidateDataRequest", reqData.UserId);
+                res.send(response);
+                return;
+            }
+            try {
+                log_info(
+                    "Started",
+                    "GetAssessmentCandidateDataRequest",
+                    reqData.UserId
+                );
+                //throw new Error('error');
+                const connection = new db();
+                var query;
+                query = `SELECT * from assessments.fn_get_assessment_candidate_data(${reqData.RequestId})`;
+                connection.Query_Function(query, function(varlistData) {
+                    response.AssessmentCandidateData.StatusId = 1;
+                    response.AssessmentCandidateData.Message = "Success";
+                    varlistData.forEach((element, index) => {
+                        if (index > 0) {
+                            if (
+                                element["candidate_name"] ==
+                                varlistData[index - 1]["candidate_name"]
+                            ) {
+                                const ind = response.AssessmentCandidateData.Candidates.findIndex(
+                                    (data) => data.CandidateName == element["candidate_name"]
+                                );
+                                if (ind != -1) {
+                                    response.AssessmentCandidateData.Candidates[
+                                        ind
+                                    ].Assessments.push({
+                                        ScheduleId: parseInt(element["schedule_id"]),
+                                        AssessmentId: parseInt(element["assessment_id"]),
+                                        AssessmentCategory: element["category"],
+                                        AssessmentStatus: element["assessment_status"],
+                                        ExamMode: parseInt(element["exam_mode"]),
+                                    });
+                                }
+                            } else {
+                                response.AssessmentCandidateData.Candidates.push({
+                                    CandidateId: parseInt(element["candidate_id"]),
+                                    CandidateName: element["candidate_name"],
+                                    RegistrationId: element["registration_id"],
+                                    ContactNumber: element["contact_no"],
+                                    Gender: element["gender"],
+                                    GuardianName: element["guardian_name"],
+                                    Assessments: [{
+                                        ScheduleId: parseInt(element["schedule_id"]),
+                                        AssessmentId: parseInt(element["assessment_id"]),
+                                        AssessmentCategory: element["category"],
+                                        AssessmentStatus: element["assessment_status"],
+                                        ExamMode: parseInt(element["exam_mode"]),
+                                    }, ],
+                                });
+                            }
+                        } else {
+                            response.AssessmentCandidateData.RequestId =
+                                element["request_id"];
+                            response.AssessmentCandidateData.SDMSBatchId =
+                                element["sdms_batch_id"];
+                            response.AssessmentCandidateData.Candidates.push({
+                                CandidateId: parseInt(element["candidate_id"]),
+                                CandidateName: element["candidate_name"],
+                                RegistrationId: element["registration_id"],
+                                ContactNumber: element["contact_no"],
+                                Gender: element["gender"],
+                                GuardianName: element["guardian_name"],
+                                Assessments: [{
+                                    ScheduleId: parseInt(element["schedule_id"]),
+                                    AssessmentId: parseInt(element["assessment_id"]),
+                                    AssessmentCategory: element["category"],
+                                    AssessmentStatus: element["assessment_status"],
+                                    ExamMode: parseInt(element["exam_mode"]),
+                                }, ],
+                            });
+                        }
+                    });
+                    log_info(
+                        "Ended",
+                        "GetAssessmentCandidateDataRequest",
+                        reqData.UserId
+                    );
+                    res.send(response);
+                });
+            } catch (err) {
+                log_error("GetAssessmentCandidateDataRequest", err);
+                log_info("Ended", "GetAssessmentCandidateDataRequest", reqData.UserId);
+                res.status(500).send("Error");
+            }
+        } else {
+            res.status(401).send("Unauthorized");
+        }
+    }
+);
+
+//Practical Assessment Evaluation Details API
+
+router.post(
+    "/GetPracticalAssessmentEvaluationDataRequest",
+    passport.authenticate("jwt", { session: false }),
+    function(req, res) {
+        var response = {
+            PracticalAssessmentEvaluationData: {
+                StatusId: 0,
+                Message: "",
+                CandidateId: 0,
+                RequestId: 0,
+                ScheduleId: 0,
+                AssessmentId: 0,
+                ExamMode: 0,
+                Sections: [],
+            },
+        };
+        if (!reqData.UserId || reqData.UserId < 0) {
+            log_info(
+                "Started",
+                "GetPracticalAssessmentEvaluationDataRequest",
+                reqData.UserId
+            );
+            response.PracticalAssessmentEvaluationData.StatusId = -1;
+            response.PracticalAssessmentEvaluationData.Message =
+                "Missing/Invalid UserId";
+            log_info(
+                "Missing",
+                "GetPracticalAssessmentEvaluationDataRequest",
+                reqData.UserId,
+                "UserId"
+            );
+            log_info(
+                "Ended",
+                "GetPracticalAssessmentEvaluationDataRequest",
+                reqData.UserId
+            );
+            res.send(response);
+            return;
+        }
+        if (req.user.data.AuthenticationResponseData.UserId == reqData.UserId) {
+            if (!reqData.ApiKey || reqData.ApiKey != apikey) {
+                log_info(
+                    "Started",
+                    "GetPracticalAssessmentEvaluationDataRequest",
+                    reqData.UserId
+                );
+                response.PracticalAssessmentEvaluationData.StatusId = -1;
+                response.PracticalAssessmentEvaluationData.Message =
+                    "Unauthorized API Request!";
+                log_info(
+                    "Ended",
+                    "GetPracticalAssessmentEvaluationDataRequest",
+                    reqData.UserId
+                );
+                log_info(
+                    "Unauthorized",
+                    "GetPracticalAssessmentEvaluationDataRequest",
+                    reqData.UserId
+                );
+                res.status(401).send(response);
+                return;
+            }
+            if (!reqData.RequestId || reqData.RequestId < 0) {
+                log_info(
+                    "Started",
+                    "GetPracticalAssessmentEvaluationDataRequest",
+                    reqData.UserId
+                );
+                response.PracticalAssessmentEvaluationData.StatusId = -1;
+                response.PracticalAssessmentEvaluationData.Message =
+                    "Missing/Invalid RequestId";
+                log_info(
+                    "Missing",
+                    "GetPracticalAssessmentEvaluationDataRequest",
+                    reqData.UserId,
+                    "RequestId"
+                );
+                log_info(
+                    "Ended",
+                    "GetPracticalAssessmentEvaluationDataRequest",
+                    reqData.UserId
+                );
+                res.send(response);
+                return;
+            }
+            if (!reqData.CandidateId || reqData.CandidateId < 0) {
+                log_info(
+                    "Started",
+                    "GetPracticalAssessmentEvaluationDataCandidate",
+                    reqData.UserId
+                );
+                response.PracticalAssessmentEvaluationData.StatusId = -1;
+                response.PracticalAssessmentEvaluationData.Message =
+                    "Missing/Invalid CandidateId";
+                log_info(
+                    "Missing",
+                    "GetPracticalAssessmentEvaluationDataCandidate",
+                    reqData.UserId,
+                    "CandidateId"
+                );
+                log_info(
+                    "Ended",
+                    "GetPracticalAssessmentEvaluationDataCandidate",
+                    reqData.UserId
+                );
+                res.send(response);
+                return;
+            }
+            if (!reqData.ScheduleId || reqData.ScheduleId < 0) {
+                log_info(
+                    "Started",
+                    "GetPracticalAssessmentEvaluationDataSchedule",
+                    reqData.UserId
+                );
+                response.PracticalAssessmentEvaluationData.StatusId = -1;
+                response.PracticalAssessmentEvaluationData.Message =
+                    "Missing/Invalid ScheduleId";
+                log_info(
+                    "Missing",
+                    "GetPracticalAssessmentEvaluationDataSchedule",
+                    reqData.UserId,
+                    "ScheduleId"
+                );
+                log_info(
+                    "Ended",
+                    "GetPracticalAssessmentEvaluationDataSchedule",
+                    reqData.UserId
+                );
+                res.send(response);
+                return;
+            }
+            if (!reqData.AssessmentId || reqData.AssessmentId < 0) {
+                log_info(
+                    "Started",
+                    "GetPracticalAssessmentEvaluationDataRequest",
+                    reqData.UserId
+                );
+                response.PracticalAssessmentEvaluationData.StatusId = -1;
+                response.PracticalAssessmentEvaluationData.Message =
+                    "Missing/Invalid AssessmentId";
+                log_info(
+                    "Missing",
+                    "GetPracticalAssessmentEvaluationDataRequest",
+                    reqData.UserId,
+                    "AssessmentId"
+                );
+                log_info(
+                    "Ended",
+                    "GetPracticalAssessmentEvaluationDataRequest",
+                    reqData.UserId
+                );
+                res.send(response);
+                return;
+            }
+            try {
+                log_info(
+                    "Started",
+                    "GetPracticalAssessmentEvaluationDataRequest",
+                    reqData.UserId
+                );
+                //throw new Error('error');
+                const connection = new db();
+                var query;
+                query = `SELECT * from questionbank.fn_get_practical_assessment_evaluation_data(${reqData.RequestId},${reqData.CandidateId},${reqData.ScheduleId},${reqData.AssessmentId})`;
+                connection.Query_Function(query, function(varlistData) {
+                    response.PracticalAssessmentEvaluationData.StatusId = 1;
+                    response.PracticalAssessmentEvaluationData.Message = "Success";
+                    varlistData.forEach((element, index) => {
+                        if (index > 0) {
+                            if (
+                                element["section_id"] == varlistData[index - 1]["section_id"]
+                            ) {
+                                if (
+                                    element["question_id"] ==
+                                    varlistData[index - 1]["question_id"]
+                                ) {
+                                    response.PracticalAssessmentEvaluationData.Sections.forEach((elt, index2) => {
+                                        const ind1 = response.PracticalAssessmentEvaluationData.Sections[index2].Questions.findIndex(
+                                            (data) => data.QuestionId == element["question_id"]
+                                        );
+                                        if (ind1 != -1) {
+                                            response.PracticalAssessmentEvaluationData.Sections[index2].Questions[
+                                                ind1
+                                            ].PCs.push({
+                                                PerformanceCriteriaId: parseInt(element["pc_id"]),
+                                                PerformanceCriteriaText: element["pc_text"],
+                                                ObservationWeightage: parseInt(
+                                                    element["observational_weightage"]
+                                                ) ? parseInt(
+                                                    element["observational_weightage"]
+                                                ) : 0,
+                                                VivaWeightage: parseInt(element["viva_weightage"]) ? parseInt(element["viva_weightage"]) : 0,
+                                            });
+                                        }
+                                    });
+                                } else {
+                                    response.PracticalAssessmentEvaluationData.Sections.forEach((elt, index2) => {
+                                        const ind1 = response.PracticalAssessmentEvaluationData.Sections[index2].findIndex(
+                                            (data) => data.SectionId == element["section_id"]
+                                        );
+                                        if (ind1 != -1) {
+                                            response.PracticalAssessmentEvaluationData.Sections.Questions.push({
+                                                QuestionSno: parseInt(element["question_sno"]),
+                                                QuestionId: parseInt(element["question_id"]),
+                                                QuestionText: element["question_text"],
+                                                VideoResponseFileName: element["video_file_name"] ? element["video_file_name"] : "",
+                                                PCs: [{
+                                                    PerformanceCriteriaId: parseInt(element["pc_id"]),
+                                                    PerformanceCriteriaText: element["pc_text"],
+                                                    ObservationWeightage: parseInt(
+                                                        element["observational_weightage"]
+                                                    ) ? parseInt(
+                                                        element["observational_weightage"]
+                                                    ) : 0,
+                                                    VivaWeightage: parseInt(element["viva_weightage"]) ? parseInt(element["viva_weightage"]) : 0,
+                                                }, ],
+                                            });
+                                        }
+                                    });
+                                }
+                            } else {
+                                response.PracticalAssessmentEvaluationData.Sections.push({
+                                    SectionId: parseInt(element["section_id"]),
+                                    SectionName: element["section_name"],
+                                    NosId: parseInt(element["nos_id"]),
+                                    NosCode: element["nos_code"],
+                                    NosName: element["nos_name"],
+                                    Questions: [{
+                                        QuestionSno: parseInt(element["question_sno"]),
+                                        QuestionId: parseInt(element["question_id"]),
+                                        QuestionText: element["question_text"],
+                                        VideoResponseFileName: element["video_file_name"] ? element["video_file_name"] : "",
+                                        PCs: [{
+                                            PerformanceCriteriaId: parseInt(element["pc_id"]),
+                                            PerformanceCriteriaText: element["pc_text"],
+                                            ObservationWeightage: parseInt(
+                                                element["observational_weightage"]
+                                            ) ? parseInt(
+                                                element["observational_weightage"]
+                                            ) : 0,
+                                            VivaWeightage: parseInt(element["viva_weightage"]) ? parseInt(element["viva_weightage"]) : 0,
+                                        }, ],
+                                    }, ],
+                                });
+                            }
+                        } else {
+                            response.PracticalAssessmentEvaluationData.RequestId =
+                                parseInt(reqData.RequestId);
+                            response.PracticalAssessmentEvaluationData.CandidateId =
+                                parseInt(reqData.CandidateId);
+                            response.PracticalAssessmentEvaluationData.ScheduleId =
+                                parseInt(reqData.ScheduleId);
+                            response.PracticalAssessmentEvaluationData.AssessmentId =
+                                parseInt(reqData.AssessmentId);
+                            response.PracticalAssessmentEvaluationData.ExamMode =
+                                element["exam_mode"];
+                            response.PracticalAssessmentEvaluationData.Sections.push({
+                                SectionId: parseInt(element["section_id"]),
+                                SectionName: element["section_name"],
+                                NosId: parseInt(element["nos_id"]),
+                                NosCode: element["nos_code"],
+                                NosName: element["nos_name"],
+                                Questions: [{
+                                    QuestionSno: parseInt(element["question_sno"]),
+                                    QuestionId: parseInt(element["question_id"]),
+                                    QuestionText: element["question_text"],
+                                    VideoResponseFileName: element["video_file_name"] ? element["video_file_name"] : "",
+                                    PCs: [{
+                                        PerformanceCriteriaId: parseInt(element["pc_id"]),
+                                        PerformanceCriteriaText: element["pc_text"],
+                                        ObservationWeightage: parseInt(
+                                            element["observational_weightage"]
+                                        ) ? parseInt(
+                                            element["observational_weightage"]
+                                        ) : 0,
+                                        VivaWeightage: parseInt(element["viva_weightage"]) ? parseInt(element["viva_weightage"]) : 0,
+                                    }, ],
+                                }, ],
+                            });
+                        }
+                    });
+                    log_info(
+                        "Ended",
+                        "GetPracticalAssessmentEvaluationDataRequest",
+                        reqData.UserId
+                    );
+                    res.send(response);
+                });
+            } catch (err) {
+                log_error("GetPracticalAssessmentEvaluationDataRequest", err);
+                log_info(
+                    "Ended",
+                    "GetPracticalAssessmentEvaluationDataRequest",
                     reqData.UserId
                 );
                 res.status(500).send("Error");
