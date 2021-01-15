@@ -1529,62 +1529,53 @@ router.post(
                                     element["question_id"] ==
                                     varlistData[index - 1]["question_id"]
                                 ) {
-                                    response.PracticalAssessmentEvaluationData.Sections.forEach(
-                                        (elt, index2) => {
-                                            const ind1 = response.PracticalAssessmentEvaluationData.Sections[
-                                                index2
-                                            ].Questions.findIndex(
-                                                (data) => data.QuestionId == element["question_id"]
-                                            );
-                                            if (ind1 != -1) {
-                                                response.PracticalAssessmentEvaluationData.Sections[
-                                                    index2
-                                                ].Questions[ind1].PCs.push({
-                                                    PerformanceCriteriaId: parseInt(element["pc_id"]),
-                                                    PerformanceCriteriaText: element["pc_text"],
-                                                    ObservationWeightage: parseInt(
-                                                            element["observational_weightage"]
-                                                        ) ?
-                                                        parseInt(element["observational_weightage"]) : 0,
-                                                    VivaWeightage: parseInt(element["viva_weightage"]) ?
-                                                        parseInt(element["viva_weightage"]) : 0,
-                                                });
-                                            }
-                                        }
+                                    const index2 = response.PracticalAssessmentEvaluationData.Sections.findIndex((datas) => datas.SectionId == element["section_id"]);
+                                    const ind1 = response.PracticalAssessmentEvaluationData.Sections[
+                                        index2
+                                    ].Questions.findIndex(
+                                        (data) => data.QuestionId == element["question_id"]
                                     );
+                                    if (ind1 != -1) {
+                                        response.PracticalAssessmentEvaluationData.Sections[
+                                            index2
+                                        ].Questions[ind1].PCs.push({
+                                            PerformanceCriteriaId: parseInt(element["pc_id"]),
+                                            PerformanceCriteriaText: element["pc_text"],
+                                            ObservationWeightage: parseInt(
+                                                    element["observational_weightage"]
+                                                ) ?
+                                                parseInt(element["observational_weightage"]) : 0,
+                                            VivaWeightage: parseInt(element["viva_weightage"]) ?
+                                                parseInt(element["viva_weightage"]) : 0,
+                                        });
+                                    }
                                 } else {
-                                    response.PracticalAssessmentEvaluationData.Sections.forEach(
-                                        (elt, index2) => {
-                                            const ind1 = response.PracticalAssessmentEvaluationData.Sections[
-                                                index2
-                                            ].findIndex(
-                                                (data) => data.SectionId == element["section_id"]
-                                            );
-                                            if (ind1 != -1) {
-                                                response.PracticalAssessmentEvaluationData.Sections.Questions.push({
-                                                    QuestionSno: parseInt(element["question_sno"]),
-                                                    QuestionId: parseInt(element["question_id"]),
-                                                    QuestionText: element["question_text"],
-                                                    VideoResponseFileName: element["video_file_name"] ?
-                                                        element["video_file_name"] : "",
-                                                    PCs: [{
-                                                        PerformanceCriteriaId: parseInt(
-                                                            element["pc_id"]
-                                                        ),
-                                                        PerformanceCriteriaText: element["pc_text"],
-                                                        ObservationWeightage: parseInt(
-                                                                element["observational_weightage"]
-                                                            ) ?
-                                                            parseInt(element["observational_weightage"]) : 0,
-                                                        VivaWeightage: parseInt(
-                                                                element["viva_weightage"]
-                                                            ) ?
-                                                            parseInt(element["viva_weightage"]) : 0,
-                                                    }, ],
-                                                });
-                                            }
-                                        }
+                                    const ind1 = response.PracticalAssessmentEvaluationData.Sections.findIndex(
+                                        (data) => data.SectionId == element["section_id"]
                                     );
+                                    if (ind1 != -1) {
+                                        response.PracticalAssessmentEvaluationData.Sections.Questions.push({
+                                            QuestionSno: parseInt(element["question_sno"]),
+                                            QuestionId: parseInt(element["question_id"]),
+                                            QuestionText: element["question_text"],
+                                            VideoResponseFileName: element["video_file_name"] ?
+                                                element["video_file_name"] : "",
+                                            PCs: [{
+                                                PerformanceCriteriaId: parseInt(
+                                                    element["pc_id"]
+                                                ),
+                                                PerformanceCriteriaText: element["pc_text"],
+                                                ObservationWeightage: parseInt(
+                                                        element["observational_weightage"]
+                                                    ) ?
+                                                    parseInt(element["observational_weightage"]) : 0,
+                                                VivaWeightage: parseInt(
+                                                        element["viva_weightage"]
+                                                    ) ?
+                                                    parseInt(element["viva_weightage"]) : 0,
+                                            }, ],
+                                        });
+                                    }
                                 }
                             } else {
                                 response.PracticalAssessmentEvaluationData.Sections.push({

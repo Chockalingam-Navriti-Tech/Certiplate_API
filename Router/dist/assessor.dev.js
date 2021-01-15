@@ -991,41 +991,40 @@ router.post("/GetPracticalAssessmentEvaluationDataRequest", passport.authenticat
           if (index > 0) {
             if (element["section_id"] == varlistData[index - 1]["section_id"]) {
               if (element["question_id"] == varlistData[index - 1]["question_id"]) {
-                response.PracticalAssessmentEvaluationData.Sections.forEach(function (elt, index2) {
-                  var ind1 = response.PracticalAssessmentEvaluationData.Sections[index2].Questions.findIndex(function (data) {
-                    return data.QuestionId == element["question_id"];
-                  });
+                var index2 = response.PracticalAssessmentEvaluationData.Sections.findIndex(function (datas) {
+                  return datas.SectionId == element["section_id"];
+                });
+                var ind1 = response.PracticalAssessmentEvaluationData.Sections[index2].Questions.findIndex(function (data) {
+                  return data.QuestionId == element["question_id"];
+                });
 
-                  if (ind1 != -1) {
-                    response.PracticalAssessmentEvaluationData.Sections[index2].Questions[ind1].PCs.push({
+                if (ind1 != -1) {
+                  response.PracticalAssessmentEvaluationData.Sections[index2].Questions[ind1].PCs.push({
+                    PerformanceCriteriaId: parseInt(element["pc_id"]),
+                    PerformanceCriteriaText: element["pc_text"],
+                    ObservationWeightage: parseInt(element["observational_weightage"]) ? parseInt(element["observational_weightage"]) : 0,
+                    VivaWeightage: parseInt(element["viva_weightage"]) ? parseInt(element["viva_weightage"]) : 0
+                  });
+                }
+              } else {
+                var _ind = response.PracticalAssessmentEvaluationData.Sections.findIndex(function (data) {
+                  return data.SectionId == element["section_id"];
+                });
+
+                if (_ind != -1) {
+                  response.PracticalAssessmentEvaluationData.Sections.Questions.push({
+                    QuestionSno: parseInt(element["question_sno"]),
+                    QuestionId: parseInt(element["question_id"]),
+                    QuestionText: element["question_text"],
+                    VideoResponseFileName: element["video_file_name"] ? element["video_file_name"] : "",
+                    PCs: [{
                       PerformanceCriteriaId: parseInt(element["pc_id"]),
                       PerformanceCriteriaText: element["pc_text"],
                       ObservationWeightage: parseInt(element["observational_weightage"]) ? parseInt(element["observational_weightage"]) : 0,
                       VivaWeightage: parseInt(element["viva_weightage"]) ? parseInt(element["viva_weightage"]) : 0
-                    });
-                  }
-                });
-              } else {
-                response.PracticalAssessmentEvaluationData.Sections.forEach(function (elt, index2) {
-                  var ind1 = response.PracticalAssessmentEvaluationData.Sections[index2].findIndex(function (data) {
-                    return data.SectionId == element["section_id"];
+                    }]
                   });
-
-                  if (ind1 != -1) {
-                    response.PracticalAssessmentEvaluationData.Sections.Questions.push({
-                      QuestionSno: parseInt(element["question_sno"]),
-                      QuestionId: parseInt(element["question_id"]),
-                      QuestionText: element["question_text"],
-                      VideoResponseFileName: element["video_file_name"] ? element["video_file_name"] : "",
-                      PCs: [{
-                        PerformanceCriteriaId: parseInt(element["pc_id"]),
-                        PerformanceCriteriaText: element["pc_text"],
-                        ObservationWeightage: parseInt(element["observational_weightage"]) ? parseInt(element["observational_weightage"]) : 0,
-                        VivaWeightage: parseInt(element["viva_weightage"]) ? parseInt(element["viva_weightage"]) : 0
-                      }]
-                    });
-                  }
-                });
+                }
               }
             } else {
               response.PracticalAssessmentEvaluationData.Sections.push({
