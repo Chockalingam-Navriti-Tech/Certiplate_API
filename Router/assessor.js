@@ -1529,49 +1529,62 @@ router.post(
                                     element["question_id"] ==
                                     varlistData[index - 1]["question_id"]
                                 ) {
-                                    response.PracticalAssessmentEvaluationData.Sections.forEach((elt, index2) => {
-                                        const ind1 = response.PracticalAssessmentEvaluationData.Sections[index2].Questions.findIndex(
-                                            (data) => data.QuestionId == element["question_id"]
-                                        );
-                                        if (ind1 != -1) {
-                                            response.PracticalAssessmentEvaluationData.Sections[index2].Questions[
-                                                ind1
-                                            ].PCs.push({
-                                                PerformanceCriteriaId: parseInt(element["pc_id"]),
-                                                PerformanceCriteriaText: element["pc_text"],
-                                                ObservationWeightage: parseInt(
-                                                    element["observational_weightage"]
-                                                ) ? parseInt(
-                                                    element["observational_weightage"]
-                                                ) : 0,
-                                                VivaWeightage: parseInt(element["viva_weightage"]) ? parseInt(element["viva_weightage"]) : 0,
-                                            });
-                                        }
-                                    });
-                                } else {
-                                    response.PracticalAssessmentEvaluationData.Sections.forEach((elt, index2) => {
-                                        const ind1 = response.PracticalAssessmentEvaluationData.Sections[index2].findIndex(
-                                            (data) => data.SectionId == element["section_id"]
-                                        );
-                                        if (ind1 != -1) {
-                                            response.PracticalAssessmentEvaluationData.Sections.Questions.push({
-                                                QuestionSno: parseInt(element["question_sno"]),
-                                                QuestionId: parseInt(element["question_id"]),
-                                                QuestionText: element["question_text"],
-                                                VideoResponseFileName: element["video_file_name"] ? element["video_file_name"] : "",
-                                                PCs: [{
+                                    response.PracticalAssessmentEvaluationData.Sections.forEach(
+                                        (elt, index2) => {
+                                            const ind1 = response.PracticalAssessmentEvaluationData.Sections[
+                                                index2
+                                            ].Questions.findIndex(
+                                                (data) => data.QuestionId == element["question_id"]
+                                            );
+                                            if (ind1 != -1) {
+                                                response.PracticalAssessmentEvaluationData.Sections[
+                                                    index2
+                                                ].Questions[ind1].PCs.push({
                                                     PerformanceCriteriaId: parseInt(element["pc_id"]),
                                                     PerformanceCriteriaText: element["pc_text"],
                                                     ObservationWeightage: parseInt(
-                                                        element["observational_weightage"]
-                                                    ) ? parseInt(
-                                                        element["observational_weightage"]
-                                                    ) : 0,
-                                                    VivaWeightage: parseInt(element["viva_weightage"]) ? parseInt(element["viva_weightage"]) : 0,
-                                                }, ],
-                                            });
+                                                            element["observational_weightage"]
+                                                        ) ?
+                                                        parseInt(element["observational_weightage"]) : 0,
+                                                    VivaWeightage: parseInt(element["viva_weightage"]) ?
+                                                        parseInt(element["viva_weightage"]) : 0,
+                                                });
+                                            }
                                         }
-                                    });
+                                    );
+                                } else {
+                                    response.PracticalAssessmentEvaluationData.Sections.forEach(
+                                        (elt, index2) => {
+                                            const ind1 = response.PracticalAssessmentEvaluationData.Sections[
+                                                index2
+                                            ].findIndex(
+                                                (data) => data.SectionId == element["section_id"]
+                                            );
+                                            if (ind1 != -1) {
+                                                response.PracticalAssessmentEvaluationData.Sections.Questions.push({
+                                                    QuestionSno: parseInt(element["question_sno"]),
+                                                    QuestionId: parseInt(element["question_id"]),
+                                                    QuestionText: element["question_text"],
+                                                    VideoResponseFileName: element["video_file_name"] ?
+                                                        element["video_file_name"] : "",
+                                                    PCs: [{
+                                                        PerformanceCriteriaId: parseInt(
+                                                            element["pc_id"]
+                                                        ),
+                                                        PerformanceCriteriaText: element["pc_text"],
+                                                        ObservationWeightage: parseInt(
+                                                                element["observational_weightage"]
+                                                            ) ?
+                                                            parseInt(element["observational_weightage"]) : 0,
+                                                        VivaWeightage: parseInt(
+                                                                element["viva_weightage"]
+                                                            ) ?
+                                                            parseInt(element["viva_weightage"]) : 0,
+                                                    }, ],
+                                                });
+                                            }
+                                        }
+                                    );
                                 }
                             } else {
                                 response.PracticalAssessmentEvaluationData.Sections.push({
@@ -1584,29 +1597,34 @@ router.post(
                                         QuestionSno: parseInt(element["question_sno"]),
                                         QuestionId: parseInt(element["question_id"]),
                                         QuestionText: element["question_text"],
-                                        VideoResponseFileName: element["video_file_name"] ? element["video_file_name"] : "",
+                                        VideoResponseFileName: element["video_file_name"] ?
+                                            element["video_file_name"] : "",
                                         PCs: [{
                                             PerformanceCriteriaId: parseInt(element["pc_id"]),
                                             PerformanceCriteriaText: element["pc_text"],
                                             ObservationWeightage: parseInt(
-                                                element["observational_weightage"]
-                                            ) ? parseInt(
-                                                element["observational_weightage"]
-                                            ) : 0,
-                                            VivaWeightage: parseInt(element["viva_weightage"]) ? parseInt(element["viva_weightage"]) : 0,
+                                                    element["observational_weightage"]
+                                                ) ?
+                                                parseInt(element["observational_weightage"]) : 0,
+                                            VivaWeightage: parseInt(element["viva_weightage"]) ?
+                                                parseInt(element["viva_weightage"]) : 0,
                                         }, ],
                                     }, ],
                                 });
                             }
                         } else {
-                            response.PracticalAssessmentEvaluationData.RequestId =
-                                parseInt(reqData.RequestId);
-                            response.PracticalAssessmentEvaluationData.CandidateId =
-                                parseInt(reqData.CandidateId);
-                            response.PracticalAssessmentEvaluationData.ScheduleId =
-                                parseInt(reqData.ScheduleId);
-                            response.PracticalAssessmentEvaluationData.AssessmentId =
-                                parseInt(reqData.AssessmentId);
+                            response.PracticalAssessmentEvaluationData.RequestId = parseInt(
+                                reqData.RequestId
+                            );
+                            response.PracticalAssessmentEvaluationData.CandidateId = parseInt(
+                                reqData.CandidateId
+                            );
+                            response.PracticalAssessmentEvaluationData.ScheduleId = parseInt(
+                                reqData.ScheduleId
+                            );
+                            response.PracticalAssessmentEvaluationData.AssessmentId = parseInt(
+                                reqData.AssessmentId
+                            );
                             response.PracticalAssessmentEvaluationData.ExamMode =
                                 element["exam_mode"];
                             response.PracticalAssessmentEvaluationData.Sections.push({
@@ -1619,16 +1637,17 @@ router.post(
                                     QuestionSno: parseInt(element["question_sno"]),
                                     QuestionId: parseInt(element["question_id"]),
                                     QuestionText: element["question_text"],
-                                    VideoResponseFileName: element["video_file_name"] ? element["video_file_name"] : "",
+                                    VideoResponseFileName: element["video_file_name"] ?
+                                        element["video_file_name"] : "",
                                     PCs: [{
                                         PerformanceCriteriaId: parseInt(element["pc_id"]),
                                         PerformanceCriteriaText: element["pc_text"],
                                         ObservationWeightage: parseInt(
-                                            element["observational_weightage"]
-                                        ) ? parseInt(
-                                            element["observational_weightage"]
-                                        ) : 0,
-                                        VivaWeightage: parseInt(element["viva_weightage"]) ? parseInt(element["viva_weightage"]) : 0,
+                                                element["observational_weightage"]
+                                            ) ?
+                                            parseInt(element["observational_weightage"]) : 0,
+                                        VivaWeightage: parseInt(element["viva_weightage"]) ?
+                                            parseInt(element["viva_weightage"]) : 0,
                                     }, ],
                                 }, ],
                             });
@@ -1646,6 +1665,437 @@ router.post(
                 log_info(
                     "Ended",
                     "GetPracticalAssessmentEvaluationDataRequest",
+                    reqData.UserId
+                );
+                res.status(500).send("Error");
+            }
+        } else {
+            res.status(401).send("Unauthorized");
+        }
+    }
+);
+
+//Cand Assessment Event Details API
+
+router.post(
+    "/GetCandidateAssessmentEventDataRequest",
+    passport.authenticate("jwt", { session: false }),
+    function(req, res) {
+        var response = {
+            StatusId: 0,
+            Message: null,
+            CandidateAssessmentEventData: [],
+        };
+        if (!reqData.UserId || reqData.UserId < 0) {
+            log_info(
+                "Started",
+                "GetCandidateAssessmentEventDataRequest",
+                reqData.UserId
+            );
+            response.StatusId = -1;
+            response.Message = "Missing/Invalid UserId";
+            log_info(
+                "Missing",
+                "GetCandidateAssessmentEventDataRequest",
+                reqData.UserId,
+                "UserId"
+            );
+            log_info(
+                "Ended",
+                "GetCandidateAssessmentEventDataRequest",
+                reqData.UserId
+            );
+            res.send(response);
+            return;
+        }
+        if (req.user.data.AuthenticationResponseData.UserId == reqData.UserId) {
+            if (!reqData.ApiKey || reqData.ApiKey != apikey) {
+                log_info(
+                    "Started",
+                    "GetCandidateAssessmentEventDataRequest",
+                    reqData.UserId
+                );
+                response.StatusId = -1;
+                response.Message = "Unauthorized API Request!";
+                log_info(
+                    "Ended",
+                    "GetCandidateAssessmentEventDataRequest",
+                    reqData.UserId
+                );
+                log_info(
+                    "Unauthorized",
+                    "GetCandidateAssessmentEventDataRequest",
+                    reqData.UserId
+                );
+                res.status(401).send(response);
+                return;
+            }
+            if (!reqData.RequestId || reqData.RequestId < 0) {
+                log_info(
+                    "Started",
+                    "GetCandidateAssessmentEventDataRequest",
+                    reqData.UserId
+                );
+                response.StatusId = -1;
+                response.Message = "Missing/Invalid RequestId";
+                log_info(
+                    "Missing",
+                    "GetCandidateAssessmentEventDataRequest",
+                    reqData.UserId,
+                    "RequestId"
+                );
+                log_info(
+                    "Ended",
+                    "GetCandidateAssessmentEventDataRequest",
+                    reqData.UserId
+                );
+                res.send(response);
+                return;
+            }
+            if (!reqData.CandidateId || reqData.CandidateId < 0) {
+                log_info(
+                    "Started",
+                    "GetPracticalAssessmentEvaluationDataCandidate",
+                    reqData.UserId
+                );
+                response.StatusId = -1;
+                response.Message = "Missing/Invalid CandidateId";
+                log_info(
+                    "Missing",
+                    "GetPracticalAssessmentEvaluationDataCandidate",
+                    reqData.UserId,
+                    "CandidateId"
+                );
+                log_info(
+                    "Ended",
+                    "GetPracticalAssessmentEvaluationDataCandidate",
+                    reqData.UserId
+                );
+                res.send(response);
+                return;
+            }
+            if (!reqData.ScheduleId || reqData.ScheduleId < 0) {
+                log_info(
+                    "Started",
+                    "GetPracticalAssessmentEvaluationDataSchedule",
+                    reqData.UserId
+                );
+                response.StatusId = -1;
+                response.Message = "Missing/Invalid ScheduleId";
+                log_info(
+                    "Missing",
+                    "GetPracticalAssessmentEvaluationDataSchedule",
+                    reqData.UserId,
+                    "ScheduleId"
+                );
+                log_info(
+                    "Ended",
+                    "GetPracticalAssessmentEvaluationDataSchedule",
+                    reqData.UserId
+                );
+                res.send(response);
+                return;
+            }
+            if (!reqData.AssessmentId || reqData.AssessmentId < 0) {
+                log_info(
+                    "Started",
+                    "GetCandidateAssessmentEventDataRequest",
+                    reqData.UserId
+                );
+                response.StatusId = -1;
+                response.Message = "Missing/Invalid AssessmentId";
+                log_info(
+                    "Missing",
+                    "GetCandidateAssessmentEventDataRequest",
+                    reqData.UserId,
+                    "AssessmentId"
+                );
+                log_info(
+                    "Ended",
+                    "GetCandidateAssessmentEventDataRequest",
+                    reqData.UserId
+                );
+                res.send(response);
+                return;
+            }
+            try {
+                log_info(
+                    "Started",
+                    "GetCandidateAssessmentEventDataRequest",
+                    reqData.UserId
+                );
+                //throw new Error('error');
+                const connection = new db();
+                var query;
+                query = `SELECT * from assessments.fn_get_candidate_assessment_event_data(${reqData.CandidateId},${reqData.RequestId},${reqData.ScheduleId},${reqData.AssessmentId})`;
+                connection.Query_Function(query, function(varlistData) {
+                    response.StatusId = 1;
+                    response.Message = "Success";
+                    var location = "https://www.google.com/maps/search/?api=1&query=";
+                    varlistData.forEach((element, index) => {
+                        response.CandidateAssessmentEventData.push({
+                            CandidateId: parseInt(element["candidate_id"]),
+                            RequestId: parseInt(element["request_id"]),
+                            CandidateName: element["candidate_name"] ?
+                                element["candidate_name"] : "",
+                            RegistrationId: parseInt(element["registration_id"]) ?
+                                parseInt(element["registration_id"]) : "",
+                            EnrollmentNumber: parseInt(element["enrollment_no"]) ?
+                                parseInt(element["enrollment_no"]) : "",
+                            SNo: parseInt(element["sno"]),
+                            EventDateTime: element["event_date_time"],
+                            EventType: element["event_type"],
+                            EventSubType: element["event_sub_type"],
+                            EventDescription: element["event_description"],
+                            AttemptId: parseInt(element["attempt_id"]),
+                            SectionId: parseInt(element["section_id"]),
+                            SectionIndex: parseInt(element["section_index"]),
+                            QuestionId: parseInt(element["question_id"]),
+                            QuestionIndex: parseInt(element["question_index"]),
+                            Response: parseInt(element["response"]),
+                            CurrentResponse: parseInt(element["current_response"]),
+                            ActualResponse: parseInt(element["actual_response"]),
+                            CurrentCorrectOption: parseInt(element["current_correct_option"]),
+                            ActualCorrectOption: parseInt(element["actual_correct_option"]),
+                            KeyboardKey: element["keyboard_key"],
+                            ElapsedSeconds: parseInt(element["elapsed_seconds"]),
+                            WebUserName: element["web_user_name"] ?
+                                element["web_user_name"] : "",
+                            Latitude: element["latitude"],
+                            Longitude: element["longitude"],
+                            GeoLocationUrl: location + element["latitude"] + "," + element["longitude"],
+                            SecondDifference: index == 0 ? 0 : (new Date(element["event_date_time"]).getTime() - new Date(varlistData[index - 1]["event_date_time"]).getTime()) / 1000,
+                            FormattedSecondDifference: index == 0 ? "0s" : (new Date(element["event_date_time"]).getTime() - new Date(varlistData[index - 1]["event_date_time"]).getTime()) / 1000 + 's',
+                            EventImage: element["event_image"],
+                        });
+                    });
+                    log_info(
+                        "Ended",
+                        "GetCandidateAssessmentEventDataRequest",
+                        reqData.UserId
+                    );
+                    res.send(response);
+                });
+            } catch (err) {
+                log_error("GetCandidateAssessmentEventDataRequest", err);
+                log_info(
+                    "Ended",
+                    "GetCandidateAssessmentEventDataRequest",
+                    reqData.UserId
+                );
+                res.status(500).send("Error");
+            }
+        } else {
+            res.status(401).send("Unauthorized");
+        }
+    }
+);
+
+//Cand System Info Details API
+
+router.post(
+    "/GetCandidateAssessmentSystemInfoDataRequest",
+    passport.authenticate("jwt", { session: false }),
+    function(req, res) {
+        var response = {
+            "StatusId": 0,
+            "Message": null,
+            "CandidateAssessmentSystemInfoData": {},
+        };
+        if (!reqData.UserId || reqData.UserId < 0) {
+            log_info(
+                "Started",
+                "GetCandidateAssessmentSystemInfoDataRequest",
+                reqData.UserId
+            );
+            response.StatusId = -1;
+            response.Message = "Missing/Invalid UserId";
+            log_info(
+                "Missing",
+                "GetCandidateAssessmentSystemInfoDataRequest",
+                reqData.UserId,
+                "UserId"
+            );
+            log_info(
+                "Ended",
+                "GetCandidateAssessmentSystemInfoDataRequest",
+                reqData.UserId
+            );
+            res.send(response);
+            return;
+        }
+        if (req.user.data.AuthenticationResponseData.UserId == reqData.UserId) {
+            if (!reqData.ApiKey || reqData.ApiKey != apikey) {
+                log_info(
+                    "Started",
+                    "GetCandidateAssessmentSystemInfoDataRequest",
+                    reqData.UserId
+                );
+                response.StatusId = -1;
+                response.Message = "Unauthorized API Request!";
+                log_info(
+                    "Ended",
+                    "GetCandidateAssessmentSystemInfoDataRequest",
+                    reqData.UserId
+                );
+                log_info(
+                    "Unauthorized",
+                    "GetCandidateAssessmentSystemInfoDataRequest",
+                    reqData.UserId
+                );
+                res.status(401).send(response);
+                return;
+            }
+            if (!reqData.RequestId || reqData.RequestId < 0) {
+                log_info(
+                    "Started",
+                    "GetCandidateAssessmentSystemInfoDataRequest",
+                    reqData.UserId
+                );
+                response.StatusId = -1;
+                response.Message = "Missing/Invalid RequestId";
+                log_info(
+                    "Missing",
+                    "GetCandidateAssessmentSystemInfoDataRequest",
+                    reqData.UserId,
+                    "RequestId"
+                );
+                log_info(
+                    "Ended",
+                    "GetCandidateAssessmentSystemInfoDataRequest",
+                    reqData.UserId
+                );
+                res.send(response);
+                return;
+            }
+            if (!reqData.CandidateId || reqData.CandidateId < 0) {
+                log_info(
+                    "Started",
+                    "GetPracticalAssessmentEvaluationDataCandidate",
+                    reqData.UserId
+                );
+                response.StatusId = -1;
+                response.Message = "Missing/Invalid CandidateId";
+                log_info(
+                    "Missing",
+                    "GetPracticalAssessmentEvaluationDataCandidate",
+                    reqData.UserId,
+                    "CandidateId"
+                );
+                log_info(
+                    "Ended",
+                    "GetPracticalAssessmentEvaluationDataCandidate",
+                    reqData.UserId
+                );
+                res.send(response);
+                return;
+            }
+            if (!reqData.ScheduleId || reqData.ScheduleId < 0) {
+                log_info(
+                    "Started",
+                    "GetPracticalAssessmentEvaluationDataSchedule",
+                    reqData.UserId
+                );
+                response.StatusId = -1;
+                response.Message = "Missing/Invalid ScheduleId";
+                log_info(
+                    "Missing",
+                    "GetPracticalAssessmentEvaluationDataSchedule",
+                    reqData.UserId,
+                    "ScheduleId"
+                );
+                log_info(
+                    "Ended",
+                    "GetPracticalAssessmentEvaluationDataSchedule",
+                    reqData.UserId
+                );
+                res.send(response);
+                return;
+            }
+            if (!reqData.AssessmentId || reqData.AssessmentId < 0) {
+                log_info(
+                    "Started",
+                    "GetCandidateAssessmentSystemInfoDataRequest",
+                    reqData.UserId
+                );
+                response.StatusId = -1;
+                response.Message = "Missing/Invalid AssessmentId";
+                log_info(
+                    "Missing",
+                    "GetCandidateAssessmentSystemInfoDataRequest",
+                    reqData.UserId,
+                    "AssessmentId"
+                );
+                log_info(
+                    "Ended",
+                    "GetCandidateAssessmentSystemInfoDataRequest",
+                    reqData.UserId
+                );
+                res.send(response);
+                return;
+            }
+            try {
+                log_info(
+                    "Started",
+                    "GetCandidateAssessmentSystemInfoDataRequest",
+                    reqData.UserId
+                );
+                //throw new Error('error');
+                const connection = new db();
+                var query;
+                query = `SELECT * from assessments.fn_get_candidate_system_info_data(${reqData.CandidateId},${reqData.RequestId},${reqData.ScheduleId},${reqData.AssessmentId})`;
+                connection.Query_Function(query, function(varlistData) {
+                    response.StatusId = 1;
+                    response.Message = "Success";
+                    varlistData.forEach((element, index) => {
+                        response.CandidateAssessmentSystemInfoData = {
+                            "SystemInfoDateTime": element["system_info_date_time"],
+                            "ComputerName": element["computer_name"],
+                            "Domain": element["computer_domain"],
+                            "IPv4Address": element["ipv4_address"],
+                            "Latitude": element["latitude"],
+                            "Longitude": element["longitude"],
+                            "OperatingSystem": element["os_name"],
+                            "OperatingSystemVersion": element["os_version"],
+                            "OperatingSystemManufacturer": element["os_manuafacturer"],
+                            "OperatingSystemConfiguration": element["os_configuration"],
+                            "OperatingSystemBuildType": element["os_build_type"],
+                            "ProductId": element["product_id"],
+                            "SystemManufacturer": element["system_manufacturer"],
+                            "SystemModel": element["system_model"],
+                            "SystemType": element["system_type"],
+                            "Processor": element["processor"],
+                            "BIOSVersion": element["bios_version"],
+                            "SystemLocale": element["system_locale"],
+                            "TimeZone": element["system_time_zone"],
+                            "TotalPhysicalMemory": element["total_physical_memory"],
+                            "AvailablePhysicalMemory": element["available_physical_memory"],
+                            "VirtualMemoryMaxSize": element["virtual_memory_max_size"],
+                            "VirtualMemoryAvailable": element["virtual_memory_available"],
+                            "VirtualMemoryInUse": element["virtual_memory_in_use"],
+                            "DeviceManufacturer": element["device_manufacturer"],
+                            "DeviceModel": element["device_model"],
+                            "DeviceHardware": element["device_hardware"],
+                            "DeviceProduct": element["device_product"],
+                            "DeviceTags": element["device_tags"],
+                            "DeviceType": element["device_type"],
+                            "DeviceSdkVersion": element["device_sdk_version"],
+                            "DeviceAppVersion": element["device_app_version"],
+                            "DeviceAndroidVersion": element["device_android_version"]
+                        };
+                    });
+                    log_info(
+                        "Ended",
+                        "GetCandidateAssessmentSystemInfoDataRequest",
+                        reqData.UserId
+                    );
+                    res.send(response);
+                });
+            } catch (err) {
+                log_error("GetCandidateAssessmentSystemInfoDataRequest", err);
+                log_info(
+                    "Ended",
+                    "GetCandidateAssessmentSystemInfoDataRequest",
                     reqData.UserId
                 );
                 res.status(500).send("Error");
