@@ -1455,5 +1455,100 @@ router.post("/GetCandidateAssessmentImageDataRequest", passport.authenticate("jw
   } else {
     res.status(401).send("Unauthorized");
   }
+}); //Assessor Assessment Data Details API
+
+router.post("/GetAssessorAssessmentDataRequest", passport.authenticate("jwt", {
+  session: false
+}), function (req, res) {
+  var response = {
+    AssessorAssessmentData: {
+      StatusId: 0,
+      Message: null,
+      AssessorAssessmentData: []
+    }
+  };
+
+  if (!reqData.UserId || reqData.UserId < 0) {
+    log_info("Started", "GetAssessorAssessmentDataRequest", reqData.UserId);
+    response.AssessorAssessmentData.StatusId = -1;
+    response.AssessorAssessmentData.Message = "Missing/Invalid UserId";
+    log_info("Missing", "GetAssessorAssessmentDataRequest", reqData.UserId, "UserId");
+    log_info("Ended", "GetAssessorAssessmentDataRequest", reqData.UserId);
+    res.send(response);
+    return;
+  }
+
+  if (req.user.data.AuthenticationResponseData.UserId == reqData.UserId) {
+    if (!reqData.ApiKey || reqData.ApiKey != apikey) {
+      log_info("Started", "GetAssessorAssessmentDataRequest", reqData.UserId);
+      response.AssessorAssessmentData.StatusId = -1;
+      response.AssessorAssessmentData.Message = "Unauthorized API Request!";
+      log_info("Ended", "GetAssessorAssessmentDataRequest", reqData.UserId);
+      log_info("Unauthorized", "GetAssessorAssessmentDataRequest", reqData.UserId);
+      res.status(401).send(response);
+      return;
+    }
+
+    if (!reqData.UserRoleId || reqData.UserRoleId < 0) {
+      log_info("Started", "GetAssessorAssessmentDataRequest", reqData.UserId);
+      response.AssessorAssessmentData.StatusId = -1;
+      response.AssessorAssessmentData.Message = "Missing/Invalid UserRoleId";
+      log_info("Missing", "GetAssessorAssessmentDataRequest", reqData.UserId, "UserRoleId");
+      log_info("Ended", "GetAssessorAssessmentDataRequest", reqData.UserId);
+      res.send(response);
+      return;
+    }
+
+    if (!reqData.RequestType || reqData.RequestType < 0) {
+      log_info("Started", "GetAssessorAssessmentDataRequest", reqData.UserId);
+      response.AssessorAssessmentData.StatusId = -1;
+      response.AssessorAssessmentData.Message = "Missing/Invalid RequestType";
+      log_info("Missing", "GetAssessorAssessmentDataRequest", reqData.UserId, "RequestType");
+      log_info("Ended", "GetAssessorAssessmentDataRequest", reqData.UserId);
+      res.send(response);
+      return;
+    }
+
+    try {
+      log_info("Started", "GetAssessorAssessmentDataRequest", reqData.UserId); //throw new Error('error');
+
+      var connection = new db();
+      var query;
+      query = "SELECT * from assessments.fn_get_assessor_assessment_data(".concat(reqData.UserId, ",").concat(reqData.UserRoleId, ",").concat(reqData.RequestType, ")");
+      connection.Query_Function(query, function (varlistData) {
+        response.AssessorAssessmentData.StatusId = 1;
+        response.AssessorAssessmentData.Message = "Success";
+        varlistData.forEach(function (element) {
+          response.AssessorAssessmentData.AssessorAssessmentData.push({
+            RequestId: parseInt(element["request_id"]),
+            SdmsBatchId: element["sdms_batch_id"],
+            StageName: element["stage_name"],
+            StatusName: element["status_name"],
+            RequestorName: element["requestor_name"],
+            CenterName: element["center_name"],
+            TrainingPartnerName: element["training_partner_name"],
+            AssessorName: element["assessor_name"],
+            ScheduledDate: element["scheduled_date"],
+            AssessmentDate: element["assessment_date"],
+            TheoryAssessmentMode: element["theory_assessment_mode"],
+            PracticalAssessmentMode: element["practical_assessment_mode"],
+            VivaMcqAssessmentMode: element["viva_mcq_assessment_mode"],
+            BatchSize: parseInt(element["batch_size"]),
+            TheoryAssessedCount: parseInt(element["theory_assessed_count"]),
+            PracticalAssessedCount: parseInt(element["practical_assessed_count"]),
+            VivaMcqAssessedCount: parseInt(element["viva_mcq_assessed_count"])
+          });
+        });
+        log_info("Ended", "GetAssessorAssessmentDataRequest", reqData.UserId);
+        res.send(response);
+      });
+    } catch (err) {
+      log_error("GetAssessorAssessmentDataRequest", err);
+      log_info("Ended", "GetAssessorAssessmentDataRequest", reqData.UserId);
+      res.status(500).send("Error");
+    }
+  } else {
+    res.status(401).send("Unauthorized");
+  }
 });
 module.exports = router;
