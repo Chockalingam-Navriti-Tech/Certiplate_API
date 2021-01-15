@@ -1,6 +1,6 @@
 const log4js = require("log4js");
 const moment = require("moment");
-const dotenv = require('dotenv');
+const dotenv = require("dotenv");
 var filename = "Log_" + moment().format("DDMMMYYYY");
 
 dotenv.config();
@@ -8,20 +8,29 @@ dotenv.config();
 // Logger configuration
 log4js.configure({
     appenders: {
-        fileAppender: { type: "file", filename: `${process.env.base_url}Logs/${filename}.txt` },
+        fileAppender: {
+            type: "file",
+            filename: `${process.env.base_url}Logs/${filename}.txt`,
+        },
     },
     categories: { default: { appenders: ["fileAppender"], level: "info" } },
 });
 const logger = log4js.getLogger();
 
 function log_info(type, API_Name, UserId = null, missing = null) {
-    if (type == "Started")
-        logger.info(
-            `API CALL STARTED (API NAME: ${API_Name}, User Id: ${UserId})\n`
-        );
-    else if (type == "Ended")
-        logger.info(`API CALL ENDED (API NAME: ${API_Name}, User Id: ${UserId})\n`);
-    else if (type == "Missing") {
+    if (type == "Started") {
+        if (UserId)
+            logger.info(
+                `API CALL STARTED (API NAME: ${API_Name}, User Id: ${UserId})\n`
+            );
+        else logger.info(`API CALL STARTED (API NAME: ${API_Name})\n`);
+    } else if (type == "Ended") {
+        if (UserId)
+            logger.info(
+                `API CALL ENDED (API NAME: ${API_Name}, User Id: ${UserId})\n`
+            );
+        else logger.info(`API CALL ENDED (API NAME: ${API_Name})\n`);
+    } else if (type == "Missing") {
         if (UserId)
             logger.info(
                 `Missing/Invalid ${missing} (API NAME: ${API_Name}, User Id: ${UserId})\n`

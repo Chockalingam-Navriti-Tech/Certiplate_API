@@ -11,6 +11,7 @@ const { log_info, log_error } = require("../Settings/log");
 const upload = multer();
 const cookieparser = require("cookie-parser");
 const fs = require("fs");
+const nodemailer = require("nodemailer");
 var apikey = "'" + process.env.apikey + "'";
 
 var reqData;
@@ -343,6 +344,114 @@ router.post(
         }
     }
 );
+
+//Send Mail API
+
+router.post("/SendMailRequest", function(req, res) {
+    var response = {
+        SendForgotPasswordMailData: {
+            StatusId: 0,
+            Message: null,
+        },
+    };
+    if (!reqData.ApiKey || reqData.ApiKey != apikey) {
+        log_info("Started", "SendMailRequest");
+        response.SendForgotPasswordMailData.StatusId = -1;
+        response.SendForgotPasswordMailData.Message = "Unauthorized API Request!";
+        log_info("Ended", "SendMailRequest");
+        log_info("Unauthorized", "SendMailRequest");
+        res.status(401).send(response);
+        return;
+    }
+    if (!reqData.Email) {
+        log_info("Started", "SendMailRequest");
+        response.SendForgotPasswordMailData.StatusId = -1;
+        response.SendForgotPasswordMailData.Message = "Missing/Invalid Email";
+        log_info("Missing", "SendMailRequest", null, "Email");
+        log_info("Ended", "SendMailRequest");
+        res.send(response);
+        return;
+    }
+    if (!reqData.from) {
+        log_info("Started", "SendMailRequest");
+        response.SendForgotPasswordMailData.StatusId = -1;
+        response.SendForgotPasswordMailData.Message =
+            "Missing/Invalid from Address";
+        log_info("Missing", "SendMailRequest", null, "from Address");
+        log_info("Ended", "SendMailRequest");
+        res.send(response);
+        return;
+    }
+    if (!reqData.subject) {
+        log_info("Started", "SendMailRequest");
+        response.SendForgotPasswordMailData.StatusId = -1;
+        response.SendForgotPasswordMailData.Message = "Missing/Invalid subject";
+        log_info("Missing", "SendMailRequest", null, "subject");
+        log_info("Ended", "SendMailRequest");
+        res.send(response);
+        return;
+    }
+    try {
+        log_info("Started", "SendMailRequest");
+        const connection = new db();
+        const query = `SELECT * from users.fn_get_forgot_password_mail_response_data('${reqData.Email}')`;
+        connection.Query_Function(query, async function(varlistData) {
+            if (varlistData[0]["message"] == "Success") {
+                response.SendForgotPasswordMailData.StatusId = 1;
+                let output;
+                if ((reqData.type = "ForgotPasswordMail")) {
+                    output = `
+                Dear ${varlistData[0]["user_name"]},
+                <br>
+                <br>
+                Please click the below URL to reset your password!
+                <br>
+                ${process.env.ResetPassword_base_url}?enc=${Buffer.from(varlistData[0]["user_id"].toString()).toString('base64')}
+                <br>
+                <br>
+                Regards,
+                <br>
+                Certiplate Team.
+                `;
+                } else {
+                    output = ``;
+                }
+                let transporter = nodemailer.createTransport({
+                    host: process.env.smtp_host,
+                    port: process.env.smtp_port,
+                    secure: false, // true for 465, false for other ports
+                    auth: {
+                        user: process.env.smtp_username, // generated ethereal user
+                        pass: process.env.smtp_password, // generated ethereal password
+                    },
+                });
+                let info = await transporter.sendMail({
+                    from: reqData.from, // sender address
+                    to: reqData.Email, // list of receivers
+                    subject: reqData.subject, // Subject line
+                    html: output, // html body
+                });
+                var status = info.response.split(' ');
+                if (status[0] == '250') {
+                    response.SendForgotPasswordMailData.Message = "Mail has been sent to your registered email with reset information!";
+                } else {
+                    response.SendForgotPasswordMailData.Message = "Error while sending Email!";
+                }
+                log_info("Ended", "SendMailRequest");
+                res.send(response);
+            } else {
+                response.SendForgotPasswordMailData.StatusId = -1;
+                response.SendForgotPasswordMailData.Message = varlistData[0]["message"];
+                log_info("Ended", "SendMailRequest");
+                res.send(response);
+            }
+        });
+    } catch (err) {
+        log_error("SendMailRequest", err);
+        log_info("Ended", "SendMailRequest");
+        res.status(500).send("Error");
+    }
+});
 
 //Reset Password API
 
@@ -2416,8 +2525,12 @@ router.post(
                             VivaMcqAssessmentMode: element["viva_mcq_assessment_mode"],
                             BatchSize: parseInt(element["batch_size"]),
                             TheoryAssessedCount: parseInt(element["theory_assessed_count"]),
-                            PracticalAssessedCount: parseInt(element["practical_assessed_count"]),
-                            VivaMcqAssessedCount: parseInt(element["viva_mcq_assessed_count"]),
+                            PracticalAssessedCount: parseInt(
+                                element["practical_assessed_count"]
+                            ),
+                            VivaMcqAssessedCount: parseInt(
+                                element["viva_mcq_assessed_count"]
+                            ),
                         });
                     });
                     log_info("Ended", "GetAssessorAssessmentDataRequest", reqData.UserId);

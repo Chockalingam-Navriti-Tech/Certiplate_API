@@ -4,7 +4,7 @@ var log4js = require("log4js");
 
 var moment = require("moment");
 
-var dotenv = require('dotenv');
+var dotenv = require("dotenv");
 
 var filename = "Log_" + moment().format("DDMMMYYYY");
 dotenv.config(); // Logger configuration
@@ -28,7 +28,12 @@ var logger = log4js.getLogger();
 function log_info(type, API_Name) {
   var UserId = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
   var missing = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
-  if (type == "Started") logger.info("API CALL STARTED (API NAME: ".concat(API_Name, ", User Id: ").concat(UserId, ")\n"));else if (type == "Ended") logger.info("API CALL ENDED (API NAME: ".concat(API_Name, ", User Id: ").concat(UserId, ")\n"));else if (type == "Missing") {
+
+  if (type == "Started") {
+    if (UserId) logger.info("API CALL STARTED (API NAME: ".concat(API_Name, ", User Id: ").concat(UserId, ")\n"));else logger.info("API CALL STARTED (API NAME: ".concat(API_Name, ")\n"));
+  } else if (type == "Ended") {
+    if (UserId) logger.info("API CALL ENDED (API NAME: ".concat(API_Name, ", User Id: ").concat(UserId, ")\n"));else logger.info("API CALL ENDED (API NAME: ".concat(API_Name, ")\n"));
+  } else if (type == "Missing") {
     if (UserId) logger.info("Missing/Invalid ".concat(missing, " (API NAME: ").concat(API_Name, ", User Id: ").concat(UserId, ")\n"));else logger.info("Missing/Invalid ".concat(missing, " (API NAME: ").concat(API_Name, ")\n"));
   } else if (type == "Unauthorized") logger.info("Unauthorized API Request! (API NAME: ".concat(API_Name, ", User Id: ").concat(UserId, ")\n"));
 }

@@ -224,3 +224,79 @@
 
 [15-Jan-2021 02:29:34 PM] [INFO] default - API CALL ENDED (API NAME: GetAssessorAssessmentDataRequest, User Id: 76841)
 
+[15-Jan-2021 03:55:46 PM] [INFO] default - API CALL STARTED (API NAME: SendMailRequest)
+
+[15-Jan-2021 03:55:46 PM] [INFO] default - API CALL ENDED (API NAME: SendMailRequest)
+
+[15-Jan-2021 03:56:58 PM] [INFO] default - API CALL STARTED (API NAME: SendMailRequest)
+
+[15-Jan-2021 03:56:58 PM] [INFO] default - API CALL ENDED (API NAME: SendMailRequest)
+
+[15-Jan-2021 03:57:53 PM] [INFO] default - API CALL STARTED (API NAME: SendMailRequest)
+
+[15-Jan-2021 03:57:53 PM] [INFO] default - API CALL ENDED (API NAME: SendMailRequest)
+
+[15-Jan-2021 03:58:52 PM] [INFO] default - API CALL STARTED (API NAME: SendMailRequest)
+
+[15-Jan-2021 03:58:53 PM] [INFO] default - API CALL ENDED (API NAME: SendMailRequest)
+
+[15-Jan-2021 03:59:12 PM] [INFO] default - API CALL STARTED (API NAME: SendMailRequest)
+
+[15-Jan-2021 03:59:13 PM] [INFO] default - API CALL ENDED (API NAME: SendMailRequest)
+
+[15-Jan-2021 03:59:17 PM] [INFO] default - API CALL STARTED (API NAME: GetAuthenticationResponseDataRequest, User Id: 'demoassessorelec@gmail.com')
+
+[15-Jan-2021 03:59:18 PM] [INFO] default - API CALL ENDED (API NAME: GetAuthenticationResponseDataRequest, User Id: 'demoassessorelec@gmail.com')
+
+[15-Jan-2021 03:59:20 PM] [INFO] default - API CALL STARTED (API NAME: SendMailRequest)
+
+[15-Jan-2021 03:59:20 PM] [INFO] default - API CALL ENDED (API NAME: SendMailRequest)
+
+[15-Jan-2021 03:59:50 PM] [INFO] default - API CALL STARTED (API NAME: SendMailRequest)
+
+[15-Jan-2021 03:59:51 PM] [INFO] default - API CALL ENDED (API NAME: SendMailRequest)
+
+[15-Jan-2021 04:00:30 PM] [INFO] default - API CALL STARTED (API NAME: SendMailRequest)
+
+[15-Jan-2021 04:00:30 PM] [INFO] default - API CALL ENDED (API NAME: SendMailRequest)
+
+[15-Jan-2021 04:00:54 PM] [INFO] default - API CALL STARTED (API NAME: SendMailRequest)
+
+[15-Jan-2021 04:00:54 PM] [INFO] default - API CALL ENDED (API NAME: SendMailRequest)
+
+[15-Jan-2021 04:01:14 PM] [INFO] default - API CALL STARTED (API NAME: SendMailRequest)
+
+[15-Jan-2021 04:01:38 PM] [INFO] default - API CALL STARTED (API NAME: SendMailRequest)
+
+[15-Jan-2021 04:03:00 PM] [INFO] default - API CALL STARTED (API NAME: SendMailRequest)
+
+[15-Jan-2021 04:03:38 PM] [INFO] default - API CALL STARTED (API NAME: SendMailRequest)
+
+[15-Jan-2021 04:04:32 PM] [INFO] default - API CALL STARTED (API NAME: SendMailRequest)
+
+[15-Jan-2021 04:05:02 PM] [INFO] default - API CALL STARTED (API NAME: SendMailRequest)
+
+[15-Jan-2021 04:05:28 PM] [INFO] default - API CALL STARTED (API NAME: SendMailRequest)
+
+[15-Jan-2021 04:05:29 PM] [INFO] default - API CALL ENDED (API NAME: SendMailRequest)
+
+[15-Jan-2021 04:09:26 PM] [INFO] default - API CALL STARTED (API NAME: SendMailRequest)
+
+[15-Jan-2021 04:09:28 PM] [INFO] default - API CALL ENDED (API NAME: SendMailRequest)
+
+[15-Jan-2021 04:10:09 PM] [INFO] default - API CALL STARTED (API NAME: SendMailRequest)
+
+[15-Jan-2021 04:10:10 PM] [INFO] default - API CALL ENDED (API NAME: SendMailRequest)
+
+[15-Jan-2021 04:11:43 PM] [INFO] default - API CALL STARTED (API NAME: SendMailRequest)
+
+[15-Jan-2021 04:11:46 PM] [INFO] default - API CALL ENDED (API NAME: SendMailRequest)
+
+[15-Jan-2021 04:14:21 PM] [INFO] default - API CALL STARTED (API NAME: SendMailRequest)
+
+[15-Jan-2021 04:14:22 PM] [INFO] default - API CALL ENDED (API NAME: SendMailRequest)
+
+[15-Jan-2021 04:15:05 PM] [INFO] default - API CALL STARTED (API NAME: SendMailRequest)
+
+[15-Jan-2021 04:15:06 PM] [INFO] default - API CALL ENDED (API NAME: SendMailRequest)
+

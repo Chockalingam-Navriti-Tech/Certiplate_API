@@ -28,6 +28,8 @@ var cookieparser = require("cookie-parser");
 
 var fs = require("fs");
 
+var nodemailer = require("nodemailer");
+
 var apikey = "'" + process.env.apikey + "'";
 var reqData;
 dotenv.config();
@@ -315,6 +317,136 @@ router.post("/ChangeUserPasswordRequest", passport.authenticate("jwt", {
     }
   } else {
     res.status(401).send("Unauthorized");
+  }
+}); //Send Mail API
+
+router.post("/SendMailRequest", function (req, res) {
+  var response = {
+    SendForgotPasswordMailData: {
+      StatusId: 0,
+      Message: null
+    }
+  };
+
+  if (!reqData.ApiKey || reqData.ApiKey != apikey) {
+    log_info("Started", "SendMailRequest");
+    response.SendForgotPasswordMailData.StatusId = -1;
+    response.SendForgotPasswordMailData.Message = "Unauthorized API Request!";
+    log_info("Ended", "SendMailRequest");
+    log_info("Unauthorized", "SendMailRequest");
+    res.status(401).send(response);
+    return;
+  }
+
+  if (!reqData.Email) {
+    log_info("Started", "SendMailRequest");
+    response.SendForgotPasswordMailData.StatusId = -1;
+    response.SendForgotPasswordMailData.Message = "Missing/Invalid Email";
+    log_info("Missing", "SendMailRequest", null, "Email");
+    log_info("Ended", "SendMailRequest");
+    res.send(response);
+    return;
+  }
+
+  if (!reqData.from) {
+    log_info("Started", "SendMailRequest");
+    response.SendForgotPasswordMailData.StatusId = -1;
+    response.SendForgotPasswordMailData.Message = "Missing/Invalid from Address";
+    log_info("Missing", "SendMailRequest", null, "from Address");
+    log_info("Ended", "SendMailRequest");
+    res.send(response);
+    return;
+  }
+
+  if (!reqData.subject) {
+    log_info("Started", "SendMailRequest");
+    response.SendForgotPasswordMailData.StatusId = -1;
+    response.SendForgotPasswordMailData.Message = "Missing/Invalid subject";
+    log_info("Missing", "SendMailRequest", null, "subject");
+    log_info("Ended", "SendMailRequest");
+    res.send(response);
+    return;
+  }
+
+  try {
+    log_info("Started", "SendMailRequest");
+    var connection = new db();
+    var query = "SELECT * from users.fn_get_forgot_password_mail_response_data('".concat(reqData.Email, "')");
+    connection.Query_Function(query, function _callee2(varlistData) {
+      var output, transporter, info, status;
+      return regeneratorRuntime.async(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              if (!(varlistData[0]["message"] == "Success")) {
+                _context2.next = 13;
+                break;
+              }
+
+              response.SendForgotPasswordMailData.StatusId = 1;
+
+              if (reqData.type = "ForgotPasswordMail") {
+                output = "\n                Dear ".concat(varlistData[0]["user_name"], ",\n                <br>\n                <br>\n                Please click the below URL to reset your password!\n                <br>\n                ").concat(process.env.ResetPassword_base_url, "?enc=").concat(Buffer.from(varlistData[0]["user_id"].toString()).toString('base64'), "\n                <br>\n                <br>\n                Regards,\n                <br>\n                Certiplate Team.\n                ");
+              } else {
+                output = "";
+              }
+
+              transporter = nodemailer.createTransport({
+                host: process.env.smtp_host,
+                port: process.env.smtp_port,
+                secure: false,
+                // true for 465, false for other ports
+                auth: {
+                  user: process.env.smtp_username,
+                  // generated ethereal user
+                  pass: process.env.smtp_password // generated ethereal password
+
+                }
+              });
+              _context2.next = 6;
+              return regeneratorRuntime.awrap(transporter.sendMail({
+                from: reqData.from,
+                // sender address
+                to: reqData.Email,
+                // list of receivers
+                subject: reqData.subject,
+                // Subject line
+                html: output // html body
+
+              }));
+
+            case 6:
+              info = _context2.sent;
+              status = info.response.split(' ');
+
+              if (status[0] == '250') {
+                response.SendForgotPasswordMailData.Message = "Mail has been sent to your registered email with reset information!";
+              } else {
+                response.SendForgotPasswordMailData.Message = "Error while sending Email!";
+              }
+
+              log_info("Ended", "SendMailRequest");
+              res.send(response);
+              _context2.next = 17;
+              break;
+
+            case 13:
+              response.SendForgotPasswordMailData.StatusId = -1;
+              response.SendForgotPasswordMailData.Message = varlistData[0]["message"];
+              log_info("Ended", "SendMailRequest");
+              res.send(response);
+
+            case 17:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      });
+    });
+  } catch (err) {
+    log_error("SendMailRequest", err);
+    log_info("Ended", "SendMailRequest");
+    res.status(500).send("Error");
   }
 }); //Reset Password API
 
