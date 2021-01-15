@@ -1,5 +1,6 @@
 const { Pool, Client } = require('pg');
 const dotenv = require('dotenv');
+const { log_info, log_error } = require("../Settings/log");
 
 dotenv.config();
 
@@ -16,7 +17,7 @@ class DB_Connect {
                 max: 1500
             });
         } catch (err) {
-            console.log(err);
+            log_error("Pg Connect", err);
         }
     }
     Query_Function(queries, callback) {
