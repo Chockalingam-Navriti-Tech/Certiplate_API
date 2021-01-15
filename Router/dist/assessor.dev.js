@@ -1196,7 +1196,7 @@ router.post("/GetCandidateAssessmentEventDataRequest", passport.authenticate("jw
             Longitude: element["longitude"],
             GeoLocationUrl: location + element["latitude"] + "," + element["longitude"],
             SecondDifference: index == 0 ? 0 : (new Date(element["event_date_time"]).getTime() - new Date(varlistData[index - 1]["event_date_time"]).getTime()) / 1000,
-            FormattedSecondDifference: index == 0 ? "0s" : (new Date(element["event_date_time"]).getTime() - new Date(varlistData[index - 1]["event_date_time"]).getTime()) / 1000 + 's',
+            FormattedSecondDifference: index == 0 ? "0s" : (new Date(element["event_date_time"]).getTime() - new Date(varlistData[index - 1]["event_date_time"]).getTime()) / 1000 + "s",
             EventImage: element["event_image"]
           });
         });
@@ -1217,9 +1217,9 @@ router.post("/GetCandidateAssessmentSystemInfoDataRequest", passport.authenticat
   session: false
 }), function (req, res) {
   var response = {
-    "StatusId": 0,
-    "Message": null,
-    "CandidateAssessmentSystemInfoData": {}
+    StatusId: 0,
+    Message: null,
+    CandidateAssessmentSystemInfoData: {}
   };
 
   if (!reqData.UserId || reqData.UserId < 0) {
@@ -1294,39 +1294,39 @@ router.post("/GetCandidateAssessmentSystemInfoDataRequest", passport.authenticat
         response.Message = "Success";
         varlistData.forEach(function (element, index) {
           response.CandidateAssessmentSystemInfoData = {
-            "SystemInfoDateTime": element["system_info_date_time"],
-            "ComputerName": element["computer_name"],
-            "Domain": element["computer_domain"],
-            "IPv4Address": element["ipv4_address"],
-            "Latitude": element["latitude"],
-            "Longitude": element["longitude"],
-            "OperatingSystem": element["os_name"],
-            "OperatingSystemVersion": element["os_version"],
-            "OperatingSystemManufacturer": element["os_manuafacturer"],
-            "OperatingSystemConfiguration": element["os_configuration"],
-            "OperatingSystemBuildType": element["os_build_type"],
-            "ProductId": element["product_id"],
-            "SystemManufacturer": element["system_manufacturer"],
-            "SystemModel": element["system_model"],
-            "SystemType": element["system_type"],
-            "Processor": element["processor"],
-            "BIOSVersion": element["bios_version"],
-            "SystemLocale": element["system_locale"],
-            "TimeZone": element["system_time_zone"],
-            "TotalPhysicalMemory": element["total_physical_memory"],
-            "AvailablePhysicalMemory": element["available_physical_memory"],
-            "VirtualMemoryMaxSize": element["virtual_memory_max_size"],
-            "VirtualMemoryAvailable": element["virtual_memory_available"],
-            "VirtualMemoryInUse": element["virtual_memory_in_use"],
-            "DeviceManufacturer": element["device_manufacturer"],
-            "DeviceModel": element["device_model"],
-            "DeviceHardware": element["device_hardware"],
-            "DeviceProduct": element["device_product"],
-            "DeviceTags": element["device_tags"],
-            "DeviceType": element["device_type"],
-            "DeviceSdkVersion": element["device_sdk_version"],
-            "DeviceAppVersion": element["device_app_version"],
-            "DeviceAndroidVersion": element["device_android_version"]
+            SystemInfoDateTime: element["system_info_date_time"],
+            ComputerName: element["computer_name"],
+            Domain: element["computer_domain"],
+            IPv4Address: element["ipv4_address"],
+            Latitude: element["latitude"],
+            Longitude: element["longitude"],
+            OperatingSystem: element["os_name"],
+            OperatingSystemVersion: element["os_version"],
+            OperatingSystemManufacturer: element["os_manuafacturer"],
+            OperatingSystemConfiguration: element["os_configuration"],
+            OperatingSystemBuildType: element["os_build_type"],
+            ProductId: element["product_id"],
+            SystemManufacturer: element["system_manufacturer"],
+            SystemModel: element["system_model"],
+            SystemType: element["system_type"],
+            Processor: element["processor"],
+            BIOSVersion: element["bios_version"],
+            SystemLocale: element["system_locale"],
+            TimeZone: element["system_time_zone"],
+            TotalPhysicalMemory: element["total_physical_memory"],
+            AvailablePhysicalMemory: element["available_physical_memory"],
+            VirtualMemoryMaxSize: element["virtual_memory_max_size"],
+            VirtualMemoryAvailable: element["virtual_memory_available"],
+            VirtualMemoryInUse: element["virtual_memory_in_use"],
+            DeviceManufacturer: element["device_manufacturer"],
+            DeviceModel: element["device_model"],
+            DeviceHardware: element["device_hardware"],
+            DeviceProduct: element["device_product"],
+            DeviceTags: element["device_tags"],
+            DeviceType: element["device_type"],
+            DeviceSdkVersion: element["device_sdk_version"],
+            DeviceAppVersion: element["device_app_version"],
+            DeviceAndroidVersion: element["device_android_version"]
           };
         });
         log_info("Ended", "GetCandidateAssessmentSystemInfoDataRequest", reqData.UserId);
@@ -1335,6 +1335,121 @@ router.post("/GetCandidateAssessmentSystemInfoDataRequest", passport.authenticat
     } catch (err) {
       log_error("GetCandidateAssessmentSystemInfoDataRequest", err);
       log_info("Ended", "GetCandidateAssessmentSystemInfoDataRequest", reqData.UserId);
+      res.status(500).send("Error");
+    }
+  } else {
+    res.status(401).send("Unauthorized");
+  }
+}); //Cand Assessment Image Data Details API
+
+router.post("/GetCandidateAssessmentImageDataRequest", passport.authenticate("jwt", {
+  session: false
+}), function (req, res) {
+  var response = {
+    StatusId: 0,
+    Message: null,
+    CandidateAssessmentImageData: []
+  };
+
+  if (!reqData.UserId || reqData.UserId < 0) {
+    log_info("Started", "GetCandidateAssessmentImageDataRequest", reqData.UserId);
+    response.StatusId = -1;
+    response.Message = "Missing/Invalid UserId";
+    log_info("Missing", "GetCandidateAssessmentImageDataRequest", reqData.UserId, "UserId");
+    log_info("Ended", "GetCandidateAssessmentImageDataRequest", reqData.UserId);
+    res.send(response);
+    return;
+  }
+
+  if (req.user.data.AuthenticationResponseData.UserId == reqData.UserId) {
+    if (!reqData.ApiKey || reqData.ApiKey != apikey) {
+      log_info("Started", "GetCandidateAssessmentImageDataRequest", reqData.UserId);
+      response.StatusId = -1;
+      response.Message = "Unauthorized API Request!";
+      log_info("Ended", "GetCandidateAssessmentImageDataRequest", reqData.UserId);
+      log_info("Unauthorized", "GetCandidateAssessmentImageDataRequest", reqData.UserId);
+      res.status(401).send(response);
+      return;
+    }
+
+    if (!reqData.RequestId || reqData.RequestId < 0) {
+      log_info("Started", "GetCandidateAssessmentImageDataRequest", reqData.UserId);
+      response.StatusId = -1;
+      response.Message = "Missing/Invalid RequestId";
+      log_info("Missing", "GetCandidateAssessmentImageDataRequest", reqData.UserId, "RequestId");
+      log_info("Ended", "GetCandidateAssessmentImageDataRequest", reqData.UserId);
+      res.send(response);
+      return;
+    }
+
+    if (!reqData.CandidateId || reqData.CandidateId < 0) {
+      log_info("Started", "GetPracticalAssessmentEvaluationDataCandidate", reqData.UserId);
+      response.StatusId = -1;
+      response.Message = "Missing/Invalid CandidateId";
+      log_info("Missing", "GetPracticalAssessmentEvaluationDataCandidate", reqData.UserId, "CandidateId");
+      log_info("Ended", "GetPracticalAssessmentEvaluationDataCandidate", reqData.UserId);
+      res.send(response);
+      return;
+    }
+
+    if (!reqData.ScheduleId || reqData.ScheduleId < 0) {
+      log_info("Started", "GetPracticalAssessmentEvaluationDataSchedule", reqData.UserId);
+      response.StatusId = -1;
+      response.Message = "Missing/Invalid ScheduleId";
+      log_info("Missing", "GetPracticalAssessmentEvaluationDataSchedule", reqData.UserId, "ScheduleId");
+      log_info("Ended", "GetPracticalAssessmentEvaluationDataSchedule", reqData.UserId);
+      res.send(response);
+      return;
+    }
+
+    if (!reqData.AssessmentId || reqData.AssessmentId < 0) {
+      log_info("Started", "GetCandidateAssessmentImageDataRequest", reqData.UserId);
+      response.StatusId = -1;
+      response.Message = "Missing/Invalid AssessmentId";
+      log_info("Missing", "GetCandidateAssessmentImageDataRequest", reqData.UserId, "AssessmentId");
+      log_info("Ended", "GetCandidateAssessmentImageDataRequest", reqData.UserId);
+      res.send(response);
+      return;
+    }
+
+    if (!reqData.ImageTypeId || reqData.ImageTypeId < 0) {
+      log_info("Started", "GetCandidateAssessmentImageDataRequest", reqData.UserId);
+      response.StatusId = -1;
+      response.Message = "Missing/Invalid ImageTypeId";
+      log_info("Missing", "GetCandidateAssessmentImageDataRequest", reqData.UserId, "ImageTypeId");
+      log_info("Ended", "GetCandidateAssessmentImageDataRequest", reqData.UserId);
+      res.send(response);
+      return;
+    }
+
+    try {
+      log_info("Started", "GetCandidateAssessmentImageDataRequest", reqData.UserId); //throw new Error('error');
+
+      var connection = new db();
+      var query;
+      query = "SELECT * from assessments.fn_get_candidate_assessment_image_data(".concat(reqData.CandidateId, ",").concat(reqData.RequestId, ",").concat(reqData.ScheduleId, ",").concat(reqData.AssessmentId, ",").concat(reqData.ImageTypeId, ")");
+      connection.Query_Function(query, function (varlistData) {
+        response.StatusId = 1;
+        response.Message = "Success";
+        var location = "https://www.google.com/maps/search/?api=1&query=";
+        varlistData.forEach(function (element, index) {
+          response.CandidateAssessmentImageData.push({
+            CandidateId: parseInt(element["candidate_id"]),
+            RequestId: parseInt(element["request_id"]),
+            SNo: parseInt(element["sno"]),
+            ImageFileName: element["file_name"],
+            ImageTimeStamp: element["time_stamp"],
+            Latitude: element["latitude"],
+            Longitude: element["longitude"],
+            GoogleMapLocationUrl: location + element["latitude"] + "," + element["longitude"]
+          });
+        });
+        log_info("Ended", "GetCandidateAssessmentImageDataRequest", reqData.UserId);
+        res.send(response);
+      });
+    } catch (err) {
+      log_error("GetCandidateAssessmentImageDataRequest", err);
+      log_info("Ended", "GetCandidateAssessmentImageDataRequest", reqData.UserId);
       res.status(500).send("Error");
     }
   } else {

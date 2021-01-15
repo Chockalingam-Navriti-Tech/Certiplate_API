@@ -126,3 +126,45 @@
 
 [15-Jan-2021 01:06:48 PM] [INFO] default - API CALL ENDED (API NAME: GetPracticalAssessmentEvaluationDataRequest, User Id: 76841)
 
+[15-Jan-2021 01:54:52 PM] [INFO] default - API CALL STARTED (API NAME: GetCandidateAssessmentImageDataRequest, User Id: 76841)
+
+[15-Jan-2021 01:54:53 PM] [INFO] default - API CALL ENDED (API NAME: GetCandidateAssessmentImageDataRequest, User Id: 76841)
+
+[15-Jan-2021 01:56:26 PM] [INFO] default - API CALL STARTED (API NAME: GetCandidateAssessmentImageDataRequest, User Id: 76841)
+
+[15-Jan-2021 01:56:26 PM] [INFO] default - API CALL ENDED (API NAME: GetCandidateAssessmentImageDataRequest, User Id: 76841)
+
+[15-Jan-2021 01:56:52 PM] [INFO] default - API CALL STARTED (API NAME: GetCandidateAssessmentImageDataRequest, User Id: 76841)
+
+[15-Jan-2021 01:56:52 PM] [INFO] default - Missing/Invalid ImageTypeId (API NAME: GetCandidateAssessmentImageDataRequest, User Id: 76841)
+
+[15-Jan-2021 01:56:52 PM] [INFO] default - API CALL ENDED (API NAME: GetCandidateAssessmentImageDataRequest, User Id: 76841)
+
+[15-Jan-2021 01:56:56 PM] [INFO] default - API CALL STARTED (API NAME: GetCandidateAssessmentImageDataRequest, User Id: 76841)
+
+[15-Jan-2021 01:56:56 PM] [INFO] default - Missing/Invalid AssessmentId (API NAME: GetCandidateAssessmentImageDataRequest, User Id: 76841)
+
+[15-Jan-2021 01:56:56 PM] [INFO] default - API CALL ENDED (API NAME: GetCandidateAssessmentImageDataRequest, User Id: 76841)
+
+[15-Jan-2021 01:56:59 PM] [INFO] default - API CALL STARTED (API NAME: GetPracticalAssessmentEvaluationDataSchedule, User Id: 76841)
+
+[15-Jan-2021 01:56:59 PM] [INFO] default - Missing/Invalid ScheduleId (API NAME: GetPracticalAssessmentEvaluationDataSchedule, User Id: 76841)
+
+[15-Jan-2021 01:56:59 PM] [INFO] default - API CALL ENDED (API NAME: GetPracticalAssessmentEvaluationDataSchedule, User Id: 76841)
+
+[15-Jan-2021 01:57:03 PM] [INFO] default - API CALL STARTED (API NAME: GetCandidateAssessmentImageDataRequest, User Id: 76841)
+
+[15-Jan-2021 01:57:03 PM] [INFO] default - Missing/Invalid RequestId (API NAME: GetCandidateAssessmentImageDataRequest, User Id: 76841)
+
+[15-Jan-2021 01:57:03 PM] [INFO] default - API CALL ENDED (API NAME: GetCandidateAssessmentImageDataRequest, User Id: 76841)
+
+[15-Jan-2021 01:57:07 PM] [INFO] default - API CALL STARTED (API NAME: GetCandidateAssessmentImageDataRequest, User Id: null)
+
+[15-Jan-2021 01:57:07 PM] [INFO] default - Missing/Invalid UserId (API NAME: GetCandidateAssessmentImageDataRequest)
+
+[15-Jan-2021 01:57:07 PM] [INFO] default - API CALL ENDED (API NAME: GetCandidateAssessmentImageDataRequest, User Id: null)
+
+[15-Jan-2021 01:57:11 PM] [INFO] default - API CALL STARTED (API NAME: GetCandidateAssessmentImageDataRequest, User Id: 76841)
+
+[15-Jan-2021 01:57:11 PM] [INFO] default - API CALL ENDED (API NAME: GetCandidateAssessmentImageDataRequest, User Id: 76841)
+
