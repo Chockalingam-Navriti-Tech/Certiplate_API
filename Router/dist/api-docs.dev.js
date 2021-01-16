@@ -800,6 +800,552 @@ var options = {
  *                  description: Forbidden from access
  *              404:
  *                  description: Not Found
+ * 
+ * /api/assessor/GetAssessorAssessmentDataRequest:
+ *      post:
+ *          summary: Get assessor assessment data detailed response
+ *          description: Used to get assessor assessment data
+ *          consumes:
+ *              - multipart/form-data
+ *          tags:
+ *              - Batch Related API's
+ *          parameters:
+ *              - in: formData
+ *                name: ApiKey
+ *                required: true
+ *                description: Enter API Key
+ *                type: string
+ *                format: password
+ *              - in: formData
+ *                name: UserId
+ *                required: true
+ *                description: Enter User Id
+ *                type: integer
+ *              - in: formData
+ *                name: UserRoleId
+ *                required: true
+ *                description: Enter User Role Id
+ *                type: integer
+ *              - in: formData
+ *                name: RequestType
+ *                required: true
+ *                description: Enter Request Type
+ *                type: string
+ *          responses:
+ *              200:
+ *                  description: A successful response
+ *                  schema:
+ *                              type: object
+ *                              properties:
+ *                                  AssessorAssessmentData:
+ *                                      type: object
+ *                                      properties:
+ *                                          StatusId:
+ *                                              type: integer
+ *                                              description: Return 1 if success else -1
+ *                                          Message:
+ *                                              type: string
+ *                                              description: Returns the message related to the request
+ *                                          AssessorAssessmentData:
+ *                                              type: array
+ *                                              items:
+ *                                                  type: object
+ *                                                  properties:
+ *                                                      RequestId:
+ *                                                          type: integer
+ *                                                      SdmsBatchId:
+ *                                                          type: string
+ *                                                      StageName:
+ *                                                          type: string
+ *                                                      StatusName:
+ *                                                          type: string
+ *                                                      RequestorName:
+ *                                                          type: string
+ *                                                      CenterName:
+ *                                                          type: string
+ *                                                      TrainingPartnerName:
+ *                                                          type: string
+ *                                                      AssessorName:
+ *                                                          type: string
+ *                                                      ScheduledDate:
+ *                                                          type: string
+ *                                                      AssessmentDate:
+ *                                                          type: string
+ *                                                      TheoryAssessmentMode:
+ *                                                          type: string
+ *                                                      PracticalAssessmentMode:
+ *                                                          type: string
+ *                                                      VivaMcqAssessmentMode:
+ *                                                          type: string
+ *                                                      BatchSize:
+ *                                                          type: integer
+ *                                                      TheoryAssessedCount:
+ *                                                          type: integer
+ *                                                      PracticalAssessedCount:
+ *                                                          type: integer
+ *                                                      VivaMcqAssessedCount:
+ *                                                          type: integer                      
+ *              400:
+ *                  description: Error in Connection
+ *              401:
+ *                  description: Unauthorized
+ *              403:
+ *                  description: Forbidden from access
+ *              404:
+ *                  description: Not Found
+ * 
+ * /api/assessor/GetPracticalAssessmentEvaluationDataRequest:
+ *      post:
+ *          summary: Get practical assessment evaluation data detailed response
+ *          description: Used to get practical assessment evaluation data
+ *          consumes:
+ *              - multipart/form-data
+ *          tags:
+ *              - Batch Related API's
+ *          parameters:
+ *              - in: formData
+ *                name: ApiKey
+ *                required: true
+ *                description: Enter API Key
+ *                type: string
+ *                format: password
+ *              - in: formData
+ *                name: UserId
+ *                required: true
+ *                description: Enter User Id
+ *                type: integer
+ *              - in: formData
+ *                name: RequestId
+ *                required: true
+ *                description: Enter Request Id
+ *                type: integer
+ *              - in: formData
+ *                name: CandidateId
+ *                required: true
+ *                description: Enter Candidate Id
+ *                type: integer
+ *              - in: formData
+ *                name: ScheduleId
+ *                required: true
+ *                description: Enter Schedule Id
+ *                type: integer
+ *              - in: formData
+ *                name: AssessmentId
+ *                required: true
+ *                description: Enter Assessment Id
+ *                type: integer
+ *          responses:
+ *              200:
+ *                  description: A successful response
+ *                  schema:
+ *                              type: object
+ *                              properties:
+ *                                  PracticalAssessmentEvaluationData:
+ *                                      type: object
+ *                                      properties:
+ *                                          StatusId:
+ *                                              type: integer
+ *                                              description: Return 1 if success else -1
+ *                                          Message:
+ *                                              type: string
+ *                                              description: Returns the message related to the request
+ *                                          CandidateId:
+ *                                              type: integer
+ *                                              description: Return Candidate Id
+ *                                          RequestId:
+ *                                              type: integer
+ *                                              description: Return Request Id
+ *                                          ScheduleId:
+ *                                              type: integer
+ *                                              description: Return Schedule Id
+ *                                          AssessmentId:
+ *                                              type: integer
+ *                                              description: Return Assessment Id
+ *                                          ExamMode:
+ *                                              type: integer
+ *                                              description: Return Exam Mode
+ *                                          Sections:
+ *                                              type: array
+ *                                              items:
+ *                                                  type: object
+ *                                                  properties:
+ *                                                      SectionId:
+ *                                                          type: integer
+ *                                                      SectionName:
+ *                                                          type: string
+ *                                                      NosId:
+ *                                                          type: integer
+ *                                                      NosCode:
+ *                                                          type: string
+ *                                                      NosName:
+ *                                                          type: string
+ *                                                      Questions:
+ *                                                          type: array
+ *                                                          items:
+ *                                                              type: object
+ *                                                              properties:
+ *                                                                  QuestionSno:
+ *                                                                      type: integer
+ *                                                                  QuestionId:
+ *                                                                      type: integer
+ *                                                                  QuestionText:
+ *                                                                      type: string
+ *                                                                  VideoResponseFileName:
+ *                                                                      type: string
+ *                                                                  PCs:
+ *                                                                      type: array
+ *                                                                      items:
+ *                                                                          type: object
+ *                                                                          properties:
+ *                                                                              PerformanceCriteriaId:
+ *                                                                                  type: integer
+ *                                                                              PerformanceCriteriaText:
+ *                                                                                  type: string
+ *                                                                              ObservationWeightage:
+ *                                                                                  type: integer
+ *                                                                              VivaWeightage:
+ *                                                                                  type: integer                                                                                     
+ *              400:
+ *                  description: Error in Connection
+ *              401:
+ *                  description: Unauthorized
+ *              403:
+ *                  description: Forbidden from access
+ *              404:
+ *                  description: Not Found
+ * 
+ * /api/assessor/GetCandidateAssessmentImageDataRequest:
+ *      post:
+ *          summary: Get candidate assessment image data detailed response
+ *          description: Used to get Candidate Assessment Image data
+ *          consumes:
+ *              - multipart/form-data
+ *          tags:
+ *              - Batch Related API's
+ *          parameters:
+ *              - in: formData
+ *                name: ApiKey
+ *                required: true
+ *                description: Enter API Key
+ *                type: string
+ *                format: password
+ *              - in: formData
+ *                name: UserId
+ *                required: true
+ *                description: Enter User Id
+ *                type: integer
+ *              - in: formData
+ *                name: RequestId
+ *                required: true
+ *                description: Enter Request Id
+ *                type: integer
+ *              - in: formData
+ *                name: CandidateId
+ *                required: true
+ *                description: Enter Candidate Id
+ *                type: integer
+ *              - in: formData
+ *                name: ScheduleId
+ *                required: true
+ *                description: Enter Schedule Id
+ *                type: integer
+ *              - in: formData
+ *                name: AssessmentId
+ *                required: true
+ *                description: Enter Assessment Id
+ *                type: integer
+ *              - in: formData
+ *                name: ImageTypeId
+ *                required: true
+ *                description: Enter Image Type Id
+ *                type: integer
+ *          responses:
+ *              200:
+ *                  description: A successful response
+ *                  schema:
+ *                              type: object
+ *                              properties:
+ *                                          StatusId:
+ *                                              type: integer
+ *                                              description: Return 1 if success else -1
+ *                                          Message:
+ *                                              type: string
+ *                                              description: Returns the message related to the request
+ *                                          CandidateAssessmentImageData:
+ *                                              type: array
+ *                                              items:
+ *                                                  type: object
+ *                                                  properties:
+ *                                                      CandidateId:
+ *                                                          type: integer
+ *                                                      RequestId:
+ *                                                          type: integer
+ *                                                      SNo:
+ *                                                          type: integer
+ *                                                      ImageFileName:
+ *                                                          type: string
+ *                                                      ImageTimeStamp:
+ *                                                          type: string
+ *                                                      Latitude:
+ *                                                          type: string
+ *                                                      Longitude:
+ *                                                          type: string
+ *                                                      GoogleMapLocationUrl:
+ *                                                          type: string                                                                                    
+ *              400:
+ *                  description: Error in Connection
+ *              401:
+ *                  description: Unauthorized
+ *              403:
+ *                  description: Forbidden from access
+ *              404:
+ *                  description: Not Found
+ * 
+ * /api/assessor/GetCandidateAssessmentEventDataRequest:
+ *      post:
+ *          summary: Get candidate assessment event data detailed response
+ *          description: Used to get Candidate Assessment Event data
+ *          consumes:
+ *              - multipart/form-data
+ *          tags:
+ *              - Batch Related API's
+ *          parameters:
+ *              - in: formData
+ *                name: ApiKey
+ *                required: true
+ *                description: Enter API Key
+ *                type: string
+ *                format: password
+ *              - in: formData
+ *                name: UserId
+ *                required: true
+ *                description: Enter User Id
+ *                type: integer
+ *              - in: formData
+ *                name: RequestId
+ *                required: true
+ *                description: Enter Request Id
+ *                type: integer
+ *              - in: formData
+ *                name: CandidateId
+ *                required: true
+ *                description: Enter Candidate Id
+ *                type: integer
+ *              - in: formData
+ *                name: ScheduleId
+ *                required: true
+ *                description: Enter Schedule Id
+ *                type: integer
+ *              - in: formData
+ *                name: AssessmentId
+ *                required: true
+ *                description: Enter Assessment Id
+ *                type: integer
+ *          responses:
+ *              200:
+ *                  description: A successful response
+ *                  schema:
+ *                              type: object
+ *                              properties:
+ *                                          StatusId:
+ *                                              type: integer
+ *                                              description: Return 1 if success else -1
+ *                                          Message:
+ *                                              type: string
+ *                                              description: Returns the message related to the request
+ *                                          CandidateAssessmentEventData:
+ *                                              type: array
+ *                                              items:
+ *                                                  type: object
+ *                                                  properties:
+ *                                                      CandidateId:
+ *                                                          type: integer
+ *                                                      RequestId:
+ *                                                          type: integer
+ *                                                      CandidateName:
+ *                                                          type: string
+ *                                                      RegistrationId:
+ *                                                          type: string
+ *                                                      EnrollmentNumber:
+ *                                                          type: string
+ *                                                      SNo:
+ *                                                          type: integer
+ *                                                      EventDateTime:
+ *                                                          type: string
+ *                                                      EventType:
+ *                                                          type: string
+ *                                                      EventSubType:
+ *                                                          type: string
+ *                                                      EventDescription:
+ *                                                          type: string
+ *                                                      AttemptId:
+ *                                                          type: integer
+ *                                                      SectionId:
+ *                                                          type: integer
+ *                                                      SectionIndex:
+ *                                                          type: integer
+ *                                                      QuestionId:
+ *                                                          type: integer
+ *                                                      QuestionIndex:
+ *                                                          type: integer
+ *                                                      Response:
+ *                                                          type: integer
+ *                                                      CurrentResponse:
+ *                                                          type: integer
+ *                                                      ActualResponse:
+ *                                                          type: integer
+ *                                                      CurrentCorrectOption:
+ *                                                          type: integer
+ *                                                      ActualCorrectOption:
+ *                                                          type: integer
+ *                                                      KeyboardKey:
+ *                                                          type: string
+ *                                                      ElapsedSeconds:
+ *                                                          type: integer
+ *                                                      WebUserName:
+ *                                                          type: string
+ *                                                      Latitude:
+ *                                                          type: string
+ *                                                      Longitude:
+ *                                                          type: string
+ *                                                      GeoLocationUrl:
+ *                                                          type: string
+ *                                                      SecondDifference:
+ *                                                          type: integer
+ *                                                      FormattedSecondDifference:
+ *                                                          type: string
+ *                                                      EventImage:
+ *                                                          type: string                                                                                   
+ *              400:
+ *                  description: Error in Connection
+ *              401:
+ *                  description: Unauthorized
+ *              403:
+ *                  description: Forbidden from access
+ *              404:
+ *                  description: Not Found
+ * 
+ * /api/assessor/GetCandidateAssessmentSystemInfoDataRequest:
+ *      post:
+ *          summary: Get candidate assessment system info detailed response
+ *          description: Used to get Candidate Assessment System Info data
+ *          consumes:
+ *              - multipart/form-data
+ *          tags:
+ *              - Batch Related API's
+ *          parameters:
+ *              - in: formData
+ *                name: ApiKey
+ *                required: true
+ *                description: Enter API Key
+ *                type: string
+ *                format: password
+ *              - in: formData
+ *                name: UserId
+ *                required: true
+ *                description: Enter User Id
+ *                type: integer
+ *              - in: formData
+ *                name: RequestId
+ *                required: true
+ *                description: Enter Request Id
+ *                type: integer
+ *              - in: formData
+ *                name: CandidateId
+ *                required: true
+ *                description: Enter Candidate Id
+ *                type: integer
+ *              - in: formData
+ *                name: ScheduleId
+ *                required: true
+ *                description: Enter Schedule Id
+ *                type: integer
+ *              - in: formData
+ *                name: AssessmentId
+ *                required: true
+ *                description: Enter Assessment Id
+ *                type: integer
+ *          responses:
+ *              200:
+ *                  description: A successful response
+ *                  schema:
+ *                              type: object
+ *                              properties:
+ *                                          StatusId:
+ *                                              type: integer
+ *                                              description: Return 1 if success else -1
+ *                                          Message:
+ *                                              type: string
+ *                                              description: Returns the message related to the request
+ *                                          CandidateAssessmentSystemInfoData:
+ *                                                  type: object
+ *                                                  properties:
+ *                                                      SystemInfoDateTime:
+ *                                                          type: string
+ *                                                      ComputerName:
+ *                                                          type: string
+ *                                                      Domain:
+ *                                                          type: string
+ *                                                      IPv4Address:
+ *                                                          type: string
+ *                                                      Latitude:
+ *                                                          type: string
+ *                                                      Longitude:
+ *                                                          type: string
+ *                                                      OperatingSystem:
+ *                                                          type: string
+ *                                                      OperatingSystemVersion:
+ *                                                          type: string
+ *                                                      OperatingSystemManufacturer:
+ *                                                          type: string
+ *                                                      OperatingSystemConfiguration:
+ *                                                          type: string
+ *                                                      OperatingSystemBuildType:
+ *                                                          type: string
+ *                                                      ProductId:
+ *                                                          type: string
+ *                                                      SystemManufacturer:
+ *                                                          type: string
+ *                                                      SystemModel:
+ *                                                          type: string
+ *                                                      SystemType:
+ *                                                          type: string
+ *                                                      Processor:
+ *                                                          type: string
+ *                                                      BIOSVersion:
+ *                                                          type: string
+ *                                                      SystemLocale:
+ *                                                          type: string
+ *                                                      TimeZone:
+ *                                                          type: string
+ *                                                      TotalPhysicalMemory:
+ *                                                          type: string
+ *                                                      AvailablePhysicalMemory:
+ *                                                          type: string
+ *                                                      VirtualMemoryMaxSize:
+ *                                                          type: string
+ *                                                      VirtualMemoryAvailable:
+ *                                                          type: string
+ *                                                      VirtualMemoryInUse:
+ *                                                          type: string
+ *                                                      DeviceManufacturer:
+ *                                                          type: string
+ *                                                      DeviceModel:
+ *                                                          type: string
+ *                                                      DeviceHardware:
+ *                                                          type: string
+ *                                                      DeviceProduct:
+ *                                                          type: string
+ *                                                      DeviceTags:
+ *                                                          type: string
+ *                                                      DeviceType:
+ *                                                          type: string
+ *                                                      DeviceSdkVersion:
+ *                                                          type: string
+ *                                                      DeviceAppVersion:
+ *                                                          type: string
+ *                                                      DeviceAndroidVersion:
+ *                                                          type: string  
  *      
  */
 

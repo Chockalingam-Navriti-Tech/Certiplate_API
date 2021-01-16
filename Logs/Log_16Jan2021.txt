@@ -62,3 +62,51 @@
 
 [16-Jan-2021 10:51:00 AM] [INFO] default - API CALL ENDED (API NAME: GetAssessmentCandidateDataRequest, User Id: 76841)
 
+[16-Jan-2021 11:22:22 AM] [INFO] default - API CALL STARTED (API NAME: GetAuthenticationResponseDataRequest, User Id: 'demoassessorelec@gmail.com')
+
+[16-Jan-2021 11:22:23 AM] [INFO] default - API CALL ENDED (API NAME: GetAuthenticationResponseDataRequest, User Id: 'demoassessorelec@gmail.com')
+
+[16-Jan-2021 11:22:28 AM] [INFO] default - API CALL STARTED (API NAME: GetAssessorAssessmentDataRequest, User Id: 76841)
+
+[16-Jan-2021 11:22:32 AM] [INFO] default - API CALL ENDED (API NAME: GetAssessorAssessmentDataRequest, User Id: 76841)
+
+[16-Jan-2021 11:31:56 AM] [INFO] default - API CALL STARTED (API NAME: GetPracticalAssessmentEvaluationDataRequest, User Id: 76841)
+
+[16-Jan-2021 11:31:59 AM] [INFO] default - API CALL ENDED (API NAME: GetPracticalAssessmentEvaluationDataRequest, User Id: 76841)
+
+[16-Jan-2021 11:47:35 AM] [INFO] default - API CALL STARTED (API NAME: GetCandidateAssessmentImageDataRequest, User Id: 76841)
+
+[16-Jan-2021 11:47:36 AM] [INFO] default - API CALL ENDED (API NAME: GetCandidateAssessmentImageDataRequest, User Id: 76841)
+
+[16-Jan-2021 11:56:34 AM] [INFO] default - API CALL STARTED (API NAME: GetCandidateAssessmentEventDataRequest, User Id: 76841)
+
+[16-Jan-2021 11:56:35 AM] [INFO] default - API CALL ENDED (API NAME: GetCandidateAssessmentEventDataRequest, User Id: 76841)
+
+[16-Jan-2021 12:08:23 PM] [INFO] default - API CALL STARTED (API NAME: GetCandidateAssessmentSystemInfoDataRequest, User Id: 76841)
+
+[16-Jan-2021 12:08:23 PM] [INFO] default - API CALL ENDED (API NAME: GetCandidateAssessmentSystemInfoDataRequest, User Id: 76841)
+
+[16-Jan-2021 12:16:21 PM] [INFO] default - API CALL STARTED (API NAME: GetAuthenticationResponseDataRequest, User Id: 'demoassessorelec@gmail.com')
+
+[16-Jan-2021 12:16:22 PM] [INFO] default - API CALL ENDED (API NAME: GetAuthenticationResponseDataRequest, User Id: 'demoassessorelec@gmail.com')
+
+[16-Jan-2021 12:16:48 PM] [INFO] default - API CALL STARTED (API NAME: GetAssessorAssessmentDataRequest, User Id: 76841)
+
+[16-Jan-2021 12:16:50 PM] [INFO] default - API CALL ENDED (API NAME: GetAssessorAssessmentDataRequest, User Id: 76841)
+
+[16-Jan-2021 12:17:53 PM] [INFO] default - API CALL STARTED (API NAME: GetPracticalAssessmentEvaluationDataRequest, User Id: 76841)
+
+[16-Jan-2021 12:17:54 PM] [INFO] default - API CALL ENDED (API NAME: GetPracticalAssessmentEvaluationDataRequest, User Id: 76841)
+
+[16-Jan-2021 12:19:21 PM] [INFO] default - API CALL STARTED (API NAME: GetCandidateAssessmentImageDataRequest, User Id: 76841)
+
+[16-Jan-2021 12:19:21 PM] [INFO] default - API CALL ENDED (API NAME: GetCandidateAssessmentImageDataRequest, User Id: 76841)
+
+[16-Jan-2021 12:20:18 PM] [INFO] default - API CALL STARTED (API NAME: GetCandidateAssessmentEventDataRequest, User Id: 76841)
+
+[16-Jan-2021 12:20:18 PM] [INFO] default - API CALL ENDED (API NAME: GetCandidateAssessmentEventDataRequest, User Id: 76841)
+
+[16-Jan-2021 12:21:16 PM] [INFO] default - API CALL STARTED (API NAME: GetCandidateAssessmentSystemInfoDataRequest, User Id: 76841)
+
+[16-Jan-2021 12:21:16 PM] [INFO] default - API CALL ENDED (API NAME: GetCandidateAssessmentSystemInfoDataRequest, User Id: 76841)
+
